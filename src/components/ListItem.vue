@@ -4,7 +4,7 @@
       <div class="w-100 h6 overflow-hidden">
         <img src="http://mrmrs.github.io/photos/cpu.jpg" class="w-100" alt="Photo of a dimly lit room with a computer interface terminal.">
       </div>
-      <h1 class="f3 fw3 mt3 mb4 lh-title">{{title}}</h1>
+      <h1 class="f3 fw4 mt3 mb4 lh-title">{{title}}</h1>
     </router-link>
   </article>
 </template>
