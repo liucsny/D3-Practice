@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import '../node_modules/tachyons/css/tachyons.min.css'
 import * as d3 from 'd3'
-import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas'
 
 window.html2canvas = html2canvas
 window.d3 = d3
