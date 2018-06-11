@@ -120,7 +120,7 @@ module.exports = function (vm) {
       //https://bost.ocks.org/mike/join/
       let t = selection.transition().duration(1000);
 
-      selection.exit().remove();
+      selection.exit().remove();//如果数据出现缺失需要这行代码对缺失数据对元素进行移除
 
       selection.enter()
                 .append('g')
