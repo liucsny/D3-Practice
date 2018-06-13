@@ -1,4 +1,5 @@
 // https://bl.ocks.org/mbostock/4063663
+// https://bl.ocks.org/Fil/6d9de24b31cb870fed2e6178a120b17d
 
 module.exports = function (vm) {
   let margin = {top: 20, right: 20, bottom: 30, left: 60}
@@ -46,6 +47,69 @@ module.exports = function (vm) {
     xAxis.tickSize(-cellSize * n)
     yAxis.tickSize(-cellSize * n)
 
+
+    let brushCell
+
+
+    // Clear the previously-active brush, if any.
+    let brush = d3.brush()
+                .extent([[0, 0], [cellSize, cellSize]])
+                .on("start", function (p) {
+                    console.log(d3.event.selection)
+                    console.log(d3.brushSelection(this))
+                    console.log(this)
+                    console.log(d3.brushSelection(svg))
+                    console.log(svg)
+                    console.log(d3.brushSelection(cell))
+                    console.log(cell)
+                    // if(extent){
+                    //   document.getElementById('hidden').remove()
+                    // }
+
+                    let style = document.createElement('style');
+                    style.type = 'text/css';
+                    style.id = 'hidden'
+                    if(style.styleSheet){
+                      style.styleSheet.cssText=`circle.hidden {
+                        fill: #ccc !important;
+                      }`;
+                    }else{
+                      style.appendChild(document.createTextNode(`circle.hidden {
+                        fill: #ccc !important;
+                      }`));
+                    }
+                    document.getElementsByTagName('head')[0].appendChild(style)
+
+                    if (brushCell !== this) {
+                      d3.select(brushCell).call(brush.move, null)
+                      brushCell = this;
+                        // console.log(this)
+                      x.domain(domainByTrait[p.x]);
+                      y.domain(domainByTrait[p.y]);
+                    }
+                  })
+                .on("brush", function (p) {
+                    let e = d3.brushSelection(this)
+
+                    svg.selectAll("circle").classed("hidden", function(d) {
+                      if(!e){
+                        return false
+                      } else {
+                        return ( e[0][0] > x(+d[p.x]) || x(+d[p.x]) > e[1][0] || e[0][1] > y(+d[p.y]) || y(+d[p.y]) > e[1][1] )
+                      }
+                    });
+                  })
+                .on("end",  function brushend() {
+                    let e = d3.brushSelection(this)
+
+                    if (e === null) {
+                        svg.selectAll(".hidden").classed("hidden", false)
+                        document.getElementById('hidden').remove()
+                    }
+                    // console.log(document.getElementById('hidden'))
+                    // document.getElementById('hidden').remove()
+                  })
+
     let svg = d3.select(vm.$refs.chartArea)
             .append('svg')
             .attr('height', cellSize * n + padding)
@@ -79,9 +143,9 @@ module.exports = function (vm) {
           .enter().append("g")
             .attr("class", "cell")
             .attr("transform", function(d) { return "translate(" + (n - d.i - 1) * cellSize + "," + d.j * cellSize + ")"; })
-            .each(function(p) {
+            .each(function(p) {   //针对selection的每个元素执行一次回调函数  d3.select(this)选取该元素  回调参数p为该元素对应的数据
               let cell = d3.select(this);
-            
+
               x.domain(domainByTrait[p.x]);
               y.domain(domainByTrait[p.y]);
             
@@ -102,6 +166,9 @@ module.exports = function (vm) {
                     .attr("r", 4)
                     .style("fill", function(d) { return color(d.species); });
               })
+
+        cell.call(brush)
+        // console.log(cell)
             
               // Clear the previously-active brush, if any.
 
@@ -127,4 +194,17 @@ module.exports = function (vm) {
     return c;
   }
 
+
+  vm.$refs.notes.innerHTML = `
+      <p>清空d3.brush的方法：d3.select(brushCell).call(brush.move, null);</p>
+      <p>判断是否重置brush的方法：<br/><pre>.on("end",  function brushend() {
+    let e = d3.brushSelection(this)
+    if (e === null) {
+      svg.selectAll(".hidden").classed("hidden", false)
+      document.getElementById('hidden').remove()
+    }
+  })</pre></p>
+      <p>if (e === null)为判断是否重置brush的方法。</p>
+      <p>使用 .each() 对同一个数据进行不同方式的可视化，然后筛选，可以达到多个图对应高亮交互对效果。</p>
+      <p>d3.event.selection 和 d3.brushSelection(this) 初步来看，返回的是同一个Array。</p>`
 }
