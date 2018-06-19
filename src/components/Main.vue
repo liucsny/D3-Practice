@@ -53,7 +53,8 @@ export default {
         { 
           name:'Dropdown Selector Plot Chart',
           link: '/d3/Dropdown_Selector',
-          img: require('../../src/assets/thumbnail/Dropdown_Selector.png')
+          img: require('../../src/assets/thumbnail/Dropdown_Selector.png'),
+          tags: ['selection.merge(other)']
         },
         { 
           name:'General Update Pattern',
@@ -68,7 +69,7 @@ export default {
         { 
           name:'Nations Bubbles',
           link: '/d3/Nations_Bubbles',
-          img: require('../../src/assets/thumbnail/default.png'),
+          img: require('../../src/assets/thumbnail/Nations_Bubbles.png'),
           tags: ['d3.bisector(comparator)']
         }
       ]

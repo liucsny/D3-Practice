@@ -205,6 +205,6 @@ module.exports = function (vm) {
     }
   })</pre></p>
       <p>if (e === null)为判断是否重置brush的方法。</p>
-      <p>使用 .each() 对同一个数据进行不同方式的可视化，然后筛选，可以达到多个图对应高亮交互对效果。</p>
+      <p class="orange">使用 .each() 对同一个数据进行不同方式的可视化，赋予相同的class，然后筛选改变class，让被选中的class高亮，可以达到多个图对应高亮交互对效果。</p>
       <p>d3.event.selection 和 d3.brushSelection(this) 初步来看，返回的是同一个Array。</p>`
 }
