@@ -70,6 +70,24 @@ export default {
           link: '/d3/Nations_Bubbles',
           img: require('../../src/assets/thumbnail/default.png'),
           tags: ['d3.bisector(comparator)']
+        },
+        { 
+          name:'World Cup 1',
+          link: '/d3/World_Cup_1',
+          img: require('../../src/assets/thumbnail/World_Cup_1.png'),
+          tags: ['d3.forceSimulation()', 'd3.on("tick",()=>{})']
+        },
+        { 
+          name:'YouTube Ratings',
+          link: '/d3/YouTube_Ratings',
+          img: require('../../src/assets/thumbnail/YouTube_Ratings.png'),
+          // tags: ['d3.bisector(comparator)']
+        },
+        { 
+          name:'Add Data to Force Layout',
+          link: '/d3/Add_Data_to_Force_Layout',
+          img: require('../../src/assets/thumbnail/default.png'),
+          // tags: ['d3.bisector(comparator)']
         }
       ]
     }
