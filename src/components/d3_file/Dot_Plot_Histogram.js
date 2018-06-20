@@ -40,37 +40,42 @@ const nbins = 20
                         .value(function(d) { return d.Value })
                         .thresholds(x.ticks(nbins))
 
-    console.log(x.ticks(nbins))
+    // console.log(x.ticks(nbins))
 
     const bins = histogram(data)
     console.log(bins)
 
     let binContainer = svg.selectAll(".gBin")
-                        .data(bins);
+                        .data(bins)
 
     binContainer.exit().remove()
 
     let binContainerEnter = binContainer.enter()
       .append("g")
         .attr("class", "gBin")
-        .attr("transform", d => `translate(${x(d.x0)}, ${height})`)
+        .attr("transform", d => `translate(${x(d.x0)}, ${innerHeight})`)
 
 
     binContainerEnter.selectAll("circle")
-        .data(d => d.map((p, i) => {
-          return {idx: i,
-                  name: p.Name,
-                  value: p.Value,
-                  radius: (x(d.x1)-x(d.x0))/2
-                }
-        }))
+        .data( function(d) {
+          return d.map((p, i) => {
+            return {
+              idx: i,
+              name: p.Name,
+              value: p.Value,
+              radius: (x(d.x1)-x(d.x0))/2
+            }
+        })
+      }
+      )
       .enter()
       .append("circle")
         .attr("class", "enter")
         .attr("cx", 0) //g element already at correct x pos
         .attr("cy", function(d) {
-            return - d.idx * 2 * d.radius - d.radius; })
+            return - d.idx * 2 * d.radius - d.radius }) //堆积效果的关键在这里
         .attr("r", 0)
+        .attr('fill', 'royalBlue')
         // .on("mouseover", tooltipOn)
         // .on("mouseout", tooltipOff)
         .transition()
@@ -80,4 +85,49 @@ const nbins = 20
     // console.log(histogram)
   })
 
-}  
+  vm.$refs.notes.innerHTML = `
+  <p>关键点1：</p>
+  <pre>
+  let binContainer = svg.selectAll(".gBin")
+                        <span class='red'>.data(bins)</span>
+
+  let binContainerEnter = binContainer.enter()
+    .append("g")
+      .attr("class", "gBin")
+        .attr("transform", d => 'translate($ {x(d.x0)}, $ {height})')
+  
+  binContainerEnter.selectAll("circle")<span class='red'>
+      .data( function(d) {
+        return d.map((p, i) => {
+          return {
+            idx: i,
+            name: p.Name,
+            value: p.Value,
+            radius: (x(d.x1)-x(d.x0))/2
+          }
+      })
+    }
+    )</span>
+    .enter()</pre>
+  <p>.data()使用了两次，第一次将bins传进去，第二次将bins中的内容打散成数组。</p>
+  </br>
+  <p>关键点2：</p>
+  <pre>
+  .data(d => d.map((p, i) => {
+    return {idx: i,
+            name: p.Name,
+            value: p.Value,
+            radius: (x(d.x1)-x(d.x0))/2
+          }
+  }))
+  .enter()
+  .append("circle")
+  .attr("class", "enter")
+  .attr("cx", 0)
+  .attr("cy", function(d) {
+    return - d.idx * 2 * d.radius - d.radius }) //堆积效果的关键在这里
+  .attr("r", 0)
+  </pre>
+  `
+
+}

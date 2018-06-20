@@ -41,20 +41,51 @@ module.exports = function (vm) {
     let nestData = d3.nest().key(function(d) {
         return d.country
       }).entries(data)
-    // console.log(nestData)
+    console.log(nestData)
 
-    let sampleData = nestData[0].values
+    let sampleData = nestData[3].values
     // console.log(sampleData)
 
-    g.append('g')
-      .selectAll('circle')
-      .data(sampleData)
-      .enter()
-      .append('circle')
-      .attr('cx', function(d){ return x(d['year']) })
-      .attr('cy', function(d){ return innerHeight/2 })
-      .attr('r', 8)
-      .attr('fill', 'rgba(0,0,0,.1)')
+    const histogram = d3.histogram()
+                        .value(function(d) { return d['year'] })
+                        .thresholds(x.domain())
+            
+    // console.log(x.domain())
+    const bins = histogram(sampleData) 
+    console.log(bins)
+
+    let binContainer = g.append('g')
+                        .selectAll('circle')
+                        .data(bins)
+
+    let binContainerEnter = binContainer.enter()
+                                        .append("g")
+                                        .attr("class", "gBin")
+                                        .attr("transform", d => `translate(${x(d.x0)}, ${innerHeight/2})`)
+                                        
+    binContainerEnter.selectAll("circle")
+    .data(function(d){
+      return d.map(function(p,i){
+        p.index = i
+        return p
+      }).sort(function(d){ return d['Datetime'] })
+    })
+    .enter()
+    .append('circle')
+      .attr('cx', 0)
+      .attr('cy', function(d){ return -d.index*16 })
+      .attr('r', function(d){
+        return d['Goals']*2
+      })
+      .attr('fill', function(d){
+        if(d['Stage'] === 'Final'){
+          return 'rgba(255,0,0,.5)'
+        } else if(d['Stage'].includes('Group')||d['Stage'] == 'First round'){
+          return 'rgba(0,155,0,.5)'
+        } else {
+          return 'rgba(0,0,255,.5)'
+        }
+      })
 
   })
 
@@ -63,6 +94,7 @@ module.exports = function (vm) {
     data.forEach((d)=>{
       newData.push({
         year : d['Year'],
+        Datetime : d['Datetime'],
         country: d['Home Team Name'],
         Goals : d['Home Team Goals'],
         Half_Goals : d['Half-time Home Goals'],
@@ -73,6 +105,7 @@ module.exports = function (vm) {
 
       newData.push({
         year : d['Year'],
+        Datetime : d['Datetime'],
         country: d['Away Team Name'],
         Goals : d['Away Team Goals'],
         Half_Goals : d['Half-time Away Goals'],

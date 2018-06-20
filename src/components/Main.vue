@@ -106,7 +106,7 @@ export default {
         { 
           name:'Dot Plot Histogram',
           link: '/d3/Dot_Plot_Histogram',
-          img: require('../../src/assets/thumbnail/default.png'),
+          img: require('../../src/assets/thumbnail/Dot_Plot_Histogram.png'),
           // tags: ['d3.forceSimulation()', 'd3.on("tick",()=>{})']
         },
         { 
