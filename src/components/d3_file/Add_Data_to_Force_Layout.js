@@ -1,3 +1,5 @@
+// https://bl.ocks.org/veltman/d44f0b296139347dabbacea36ac9e27c
+
 module.exports = function (vm) {
   let margin = {top: 20, right: 20, bottom: 30, left: 60}
   let width = vm.$refs.chartArea.offsetWidth * 0.95

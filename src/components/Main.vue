@@ -28,7 +28,8 @@ export default {
         { 
           name:'Dataset Nest',
           link: '/d3/Dataset_Nest',
-          img: require('../../src/assets/thumbnail/Dataset_Nest.png')
+          img: require('../../src/assets/thumbnail/Dataset_Nest.png'),
+          tags: ['d3.nest()', 'nest.key(func)', 'nest.rollup(func)', 'nest.enteries(data)']
         },
         { 
           name:'Scatterplot',
@@ -84,12 +85,36 @@ export default {
           img: require('../../src/assets/thumbnail/YouTube_Ratings.png'),
           // tags: ['d3.bisector(comparator)']
         },
-        { 
+        {
           name:'Add Data to Force Layout',
           link: '/d3/Add_Data_to_Force_Layout',
           img: require('../../src/assets/thumbnail/default.png'),
           // tags: ['d3.bisector(comparator)']
-        }
+        },
+        { 
+          name:'Radial Column Chart',
+          link: '/d3/Radial_Column_Chart',
+          img: require('../../src/assets/thumbnail/Radial_Column_Chart.png'),
+          // tags: ['d3.bisector(comparator)']
+        },
+        { 
+          name:'World Cup 2',
+          link: '/d3/World_Cup_2',
+          img: require('../../src/assets/thumbnail/default.png'),
+          // tags: ['d3.forceSimulation()', 'd3.on("tick",()=>{})']
+        },
+        { 
+          name:'Dot Plot Histogram',
+          link: '/d3/Dot_Plot_Histogram',
+          img: require('../../src/assets/thumbnail/default.png'),
+          // tags: ['d3.forceSimulation()', 'd3.on("tick",()=>{})']
+        },
+        { 
+          name:'Histogram',
+          link: '/d3/Histogram',
+          img: require('../../src/assets/thumbnail/Histogram.png'),
+          tags: ['d3.histogram()']
+        },
       ]
     }
   },
