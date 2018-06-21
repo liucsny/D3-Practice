@@ -10,14 +10,19 @@ module.exports = function (vm) {
               .attr('height', height)
               .attr('width', width)
 
-  const g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+  // const g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+  const g = svg.append("g").attr("transform", "translate(" + innerWidth/2 + "," + innerHeight/2 + ")")
 
   let parseTime = {
     Datetime: d3.timeParse("%d %b %Y - %H:%M"),
     Year: d3.timeParse("%Y")
   }
 
-  let x = d3.scalePoint().rangeRound([0,innerWidth])
+  let xRadial = d3.scaleBand()
+  .range([0.1*Math.PI, 1.9*Math.PI])
+  .align(1)
+
+  let x = d3.scalePoint().rangeRound([0,innerWidth/2])
 
   d3.csv('/static/World_Cup.csv',function(d){
     let numAttr = ['Half-time Away Goals', 'Half-time Home Goals', 'Home Team Goals', 'Away Team Goals', 'Attendance']
@@ -32,6 +37,7 @@ module.exports = function (vm) {
   }).then(function(rawData){
     // console.log(rawData)
     x.domain(rawData.map(function(d) { return d['Year'] }))
+    xRadial.domain(rawData.map(function(d) { return d['Year'] }))
     // console.log(rawData)
     // console.log(rawData.map(function(d) { return d['Year'] }))
 
@@ -41,9 +47,9 @@ module.exports = function (vm) {
     let nestData = d3.nest().key(function(d) {
         return d.country
       }).entries(data)
-    console.log(nestData)
+    // console.log(nestData)
 
-    let sampleData = nestData[3].values
+    let sampleData = nestData[5].values
     // console.log(sampleData)
 
     const histogram = d3.histogram()
@@ -51,8 +57,8 @@ module.exports = function (vm) {
                         .thresholds(x.domain())
             
     // console.log(x.domain())
-    const bins = histogram(sampleData) 
-    console.log(bins)
+    const bins = histogram(sampleData)
+    // console.log(bins)
 
     let binContainer = g.append('g')
                         .selectAll('circle')
@@ -61,7 +67,11 @@ module.exports = function (vm) {
     let binContainerEnter = binContainer.enter()
                                         .append("g")
                                         .attr("class", "gBin")
-                                        .attr("transform", d => `translate(${x(d.x0)}, ${innerHeight/2})`)
+                                        // .attr("transform", d => `translate(${x(d.x0)}, ${innerHeight/2})`)
+                                        // .append("g")
+                                        .attr("transform", function(d) { return "rotate(" + ( xRadial(d.x0) * 180 / Math.PI ) + ")translate(" + 0 + ",0)"; })
+                                        .attr("transform-origin", "0% 15%")                                        
+                                        // .attr("transform", function(d) { return "rotate(" + (xRadial(d.x0) * 180 / Math.PI - 90) + ")translate(" + 0 + ",0)"; });
                                         
     binContainerEnter.selectAll("circle")
     .data(function(d){
@@ -71,21 +81,66 @@ module.exports = function (vm) {
       }).sort(function(d){ return d['Datetime'] })
     })
     .enter()
+    .append('g')
+    .attr('transform',function(d){
+      return `translate(0, ${-d.index*16} )`
+    })
+    .selectAll('circle')
+    .data(function(d){
+      // console.log(d)
+      let array = []
+      for (let i = 0; i <= d['Goals']; i++) {
+        array.push({
+          index : i
+        })
+      }
+      // console.log(d)
+      // console.log(array)
+      return array
+    })
+    .enter()
     .append('circle')
       .attr('cx', 0)
-      .attr('cy', function(d){ return -d.index*16 })
+      .attr('cy', 0)
       .attr('r', function(d){
-        return d['Goals']*2
-      })
-      .attr('fill', function(d){
-        if(d['Stage'] === 'Final'){
-          return 'rgba(255,0,0,.5)'
-        } else if(d['Stage'].includes('Group')||d['Stage'] == 'First round'){
-          return 'rgba(0,155,0,.5)'
-        } else {
-          return 'rgba(0,0,255,.5)'
+        if(d.index === 0){
+          return 2
+        }else{
+          return ( d.index ) * 3
         }
       })
+      .attr('fill',function(d){
+        if(d.index === 0){
+          return 'rgba(0,0,0,.2)'
+        }else{
+          return 'none'
+        }
+      })
+      .attr('stroke', function(d){
+        if(d.index === 0){
+          return 'none'
+        }else{
+          return 'black'
+        }
+      })
+      // .attr('cy', function(d){
+      //   console.log(d)
+      //   return -d.index*16 
+      // })
+      // .attr('r', function(d){
+      //   // console.log(d)
+      //   return (d['Goals']+1)*2
+      // })
+      // .attr('fill', function(d){
+      //   if(d['Stage'] === 'Final'){
+      //     return 'rgba(255,0,0,.5)'
+      //   } else if(d['Stage'].includes('Group')||d['Stage'] == 'First round'){
+      //     return 'rgba(0,155,0,.5)'
+      //   } else {
+      //     return 'rgba(0,0,255,.5)'
+      //   }
+      //   // return 'rgba(0,0,0,.5)'
+      // })
 
   })
 
@@ -117,4 +172,26 @@ module.exports = function (vm) {
 
     return newData
   }
+
+  vm.$refs.notes.innerHTML = `
+  <p>可以使用<pre>
+  .selectAll('selector')
+  .data(function(d){
+    return array(d)
+  }).enter()
+
+  .selectAll('selector')
+  .data(function(d){
+    return array(d)
+  }).enter()
+
+  .selectAll('selector')
+  .data(function(d){
+    return array(d)
+  }).enter()
+
+  ...
+  </pre></p>
+  <p>这样循环的方式去触及每个数据的枝叶部分</p>
+  `
 }
