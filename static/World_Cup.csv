@@ -413,13 +413,13 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 1986,29 Jun 1986 - 12:00,Final,Estadio Azteca,Mexico City ,Argentina,3,2,Germany FR, ,114600,1,0
 1990,08 Jun 1990 - 18:00,Group B,Giuseppe Meazza,Milan ,Argentina,0,1,Cameroon, ,73780,0,0
 1990,09 Jun 1990 - 17:00,Group B,Stadio San Nicola,Bari ,Soviet Union,0,2,Romania, ,42907,0,1
-1990,09 Jun 1990 - 17:00,Group D,Renato Dall Ara,Bologna ,"rn"">United Arab Emirates",0,2,Colombia, ,30791,0,0
+1990,09 Jun 1990 - 17:00,Group D,Renato Dall Ara,Bologna ,"United Arab Emirates",0,2,Colombia, ,30791,0,0
 1990,09 Jun 1990 - 21:00,Group A,Stadio Olimpico,Rome ,Italy,1,0,Austria, ,73303,0,0
 1990,10 Jun 1990 - 17:00,Group A,Comunale,Florence ,USA,1,5,Czechoslovakia, ,33266,0,2
 1990,10 Jun 1990 - 21:00,Group C,Stadio delle Alpi,Turin ,Brazil,2,1,Sweden, ,62628,1,0
 1990,10 Jun 1990 - 21:00,Group D,Giuseppe Meazza,Milan ,Germany FR,4,1,Yugoslavia, ,74765,2,0
 1990,11 Jun 1990 - 17:00,Group C,Luigi Ferraris,Genoa ,Costa Rica,1,0,Scotland, ,30867,0,0
-1990,11 Jun 1990 - 21:00,Group F,Sant Elia,Cagliari ,England,1,1,"rn"">Republic of Ireland", ,35238,1,0
+1990,11 Jun 1990 - 21:00,Group F,Sant Elia,Cagliari ,England,1,1,"Republic of Ireland", ,35238,1,0
 1990,12 Jun 1990 - 17:00,Group E,Marc Antonio Bentegodi,Verona ,Belgium,2,0,Korea Republic, ,32790,0,0
 1990,12 Jun 1990 - 21:00,Group F,Della Favorita,Palermo ,Netherlands,1,1,Egypt, ,33288,0,0
 1990,13 Jun 1990 - 17:00,Group E,Dacia Arena,Udine ,Uruguay,0,0,Spain, ,35713,0,0
@@ -428,35 +428,35 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 1990,14 Jun 1990 - 17:00,Group D,Renato Dall Ara,Bologna ,Yugoslavia,1,0,Colombia, ,32257,0,0
 1990,14 Jun 1990 - 21:00,Group A,Stadio Olimpico,Rome ,Italy,1,0,USA, ,73423,1,0
 1990,15 Jun 1990 - 17:00,Group A,Comunale,Florence ,Austria,0,1,Czechoslovakia, ,38962,0,1
-1990,15 Jun 1990 - 21:00,Group D,Giuseppe Meazza,Milan ,Germany FR,5,1,"rn"">United Arab Emirates", ,71169,2,0
+1990,15 Jun 1990 - 21:00,Group D,Giuseppe Meazza,Milan ,Germany FR,5,1,"United Arab Emirates", ,71169,2,0
 1990,16 Jun 1990 - 17:00,Group C,Stadio delle Alpi,Turin ,Brazil,1,0,Costa Rica, ,58007,1,0
 1990,16 Jun 1990 - 21:00,Group C,Luigi Ferraris,Genoa ,Sweden,1,2,Scotland, ,31823,0,1
 1990,16 Jun 1990 - 21:00,Group F,Sant Elia,Cagliari ,England,0,0,Netherlands, ,35267,0,0
-1990,17 Jun 1990 - 17:00,Group F,Della Favorita,Palermo ,"rn"">Republic of Ireland",0,0,Egypt, ,33288,0,0
+1990,17 Jun 1990 - 17:00,Group F,Della Favorita,Palermo ,"Republic of Ireland",0,0,Egypt, ,33288,0,0
 1990,17 Jun 1990 - 21:00,Group E,Dacia Arena,Udine ,Korea Republic,1,3,Spain, ,32733,1,1
 1990,17 Jun 1990 - 21:00,Group E,Marc Antonio Bentegodi,Verona ,Belgium,3,1,Uruguay, ,33759,2,0
 1990,18 Jun 1990 - 21:00,Group B,San Paolo,Naples ,Argentina,1,1,Romania, ,52733,0,0
 1990,18 Jun 1990 - 21:00,Group B,Stadio San Nicola,Bari ,Cameroon,0,4,Soviet Union, ,37307,0,2
 1990,19 Jun 1990 - 17:00,Group D,Giuseppe Meazza,Milan ,Germany FR,1,1,Colombia, ,72510,0,0
-1990,19 Jun 1990 - 17:00,Group D,Renato Dall Ara,Bologna ,Yugoslavia,4,1,"rn"">United Arab Emirates", ,27833,2,1
+1990,19 Jun 1990 - 17:00,Group D,Renato Dall Ara,Bologna ,Yugoslavia,4,1,"United Arab Emirates", ,27833,2,1
 1990,19 Jun 1990 - 21:00,Group A,Stadio Olimpico,Rome ,Italy,2,0,Czechoslovakia, ,73303,1,0
 1990,19 Jun 1990 - 21:00,Group A,Comunale,Florence ,Austria,2,1,USA, ,34857,0,0
 1990,20 Jun 1990 - 21:00,Group C,Stadio delle Alpi,Turin ,Brazil,1,0,Scotland, ,62502,0,0
 1990,20 Jun 1990 - 21:00,Group C,Luigi Ferraris,Genoa ,Sweden,1,2,Costa Rica, ,30223,1,0
 1990,21 Jun 1990 - 17:00,Group E,Friuli,Udine ,Korea Republic,0,1,Uruguay, ,29039,0,0
 1990,21 Jun 1990 - 17:00,Group E,Marc Antonio Bentegodi,Verona ,Belgium,1,2,Spain, ,35950,1,2
-1990,21 Jun 1990 - 21:00,Group F,Della Favorita,Palermo ,"rn"">Republic of Ireland",1,1,Netherlands, ,33288,0,1
+1990,21 Jun 1990 - 21:00,Group F,Della Favorita,Palermo ,"Republic of Ireland",1,1,Netherlands, ,33288,0,1
 1990,21 Jun 1990 - 21:00,Group F,Sant Elia,Cagliari ,England,1,0,Egypt, ,34959,0,0
 1990,23 Jun 1990 - 17:00,Round of 16,San Paolo,Naples ,Cameroon,2,1,Colombia,Cameroon win after extra time ,50026,0,0
 1990,23 Jun 1990 - 21:00,Round of 16,Stadio San Nicola,Bari ,Czechoslovakia,4,1,Costa Rica, ,47673,1,0
 1990,24 Jun 1990 - 17:00,Round of 16,Stadio delle Alpi,Turin ,Brazil,0,1,Argentina, ,61381,0,0
 1990,24 Jun 1990 - 21:00,Round of 16,Giuseppe Meazza,Milan ,Germany FR,2,1,Netherlands, ,74559,0,0
-1990,25 Jun 1990 - 17:00,Round of 16,Luigi Ferraris,Genoa ,"rn"">Republic of Ireland",0,0,Romania,Republic of Ireland win on penalties (5 - 4),31818,0,0
+1990,25 Jun 1990 - 17:00,Round of 16,Luigi Ferraris,Genoa ,"Republic of Ireland",0,0,Romania,Republic of Ireland win on penalties (5 - 4),31818,0,0
 1990,25 Jun 1990 - 21:00,Round of 16,Stadio Olimpico,Rome ,Italy,2,0,Uruguay, ,73303,0,0
 1990,26 Jun 1990 - 17:00,Round of 16,Marc Antonio Bentegodi,Verona ,Spain,1,2,Yugoslavia,Yugoslavia win after extra time ,35500,0,0
 1990,26 Jun 1990 - 21:00,Round of 16,Renato Dall Ara,Bologna ,England,1,0,Belgium,England win after extra time ,34520,0,0
 1990,30 Jun 1990 - 17:00,Quarter-finals,Comunale,Florence ,Yugoslavia,0,0,Argentina,win on penalties (2 - 3),38971,0,0
-1990,30 Jun 1990 - 21:00,Quarter-finals,Stadio Olimpico,Rome ,Italy,1,0,"rn"">Republic of Ireland", ,73303,1,0
+1990,30 Jun 1990 - 21:00,Quarter-finals,Stadio Olimpico,Rome ,Italy,1,0,"Republic of Ireland", ,73303,1,0
 1990,01 Jul 1990 - 17:00,Quarter-finals,Giuseppe Meazza,Milan ,Germany FR,1,0,Czechoslovakia, ,73347,1,0
 1990,01 Jul 1990 - 21:00,Quarter-finals,San Paolo,Naples ,England,3,2,Cameroon,England win after extra time ,55205,0,0
 1990,03 Jul 1990 - 20:00,Semi-finals,San Paolo,Naples ,Italy,1,1,Argentina,win on penalties (3 - 4),59978,0,0
@@ -466,7 +466,7 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 1994,17 Jun 1994 - 19:30,Group C,Cotton Bowl,Dallas ,Spain,2,2,Korea Republic, ,56247,0,0
 1994,17 Jun 1994 - 15:00,Group C,Soldier Field,Chicago ,Germany,1,0,Bolivia, ,63117,0,0
 1994,18 Jun 1994 - 11:30,Group A,Pontiac Silverdome,Detroit ,USA,1,1,Switzerland, ,73425,1,1
-1994,18 Jun 1994 - 16:00,Group E,Giants Stadium,New York/New Jersey ,Italy,0,1,"rn"">Republic of Ireland", ,75338,0,1
+1994,18 Jun 1994 - 16:00,Group E,Giants Stadium,New York/New Jersey ,Italy,0,1,"Republic of Ireland", ,75338,0,1
 1994,18 Jun 1994 - 19:30,Group A,Rose Bowl,Los Angeles ,Colombia,1,3,Romania, ,91856,1,2
 1994,19 Jun 1994 - 12:30,Group F,Citrus Bowl,Orlando ,Belgium,1,0,Morocco, ,61219,1,0
 1994,19 Jun 1994 - 16:00,Group E,RFK Stadium,Washington Dc ,Norway,1,0,Mexico, ,52395,0,0
@@ -480,7 +480,7 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 1994,22 Jun 1994 - 19:30,Group A,Rose Bowl,Los Angeles ,USA,2,1,Colombia, ,93869,1,0
 1994,23 Jun 1994 - 16:00,Group E,Giants Stadium,New York/New Jersey ,Italy,1,0,Norway, ,74624,0,0
 1994,23 Jun 1994 - 19:30,Group C,Foxboro Stadium,Boston ,Korea Republic,0,0,Bolivia, ,54453,0,0
-1994,24 Jun 1994 - 12:30,Group E,Citrus Bowl,Orlando ,Mexico,2,1,"rn"">Republic of Ireland", ,60790,1,0
+1994,24 Jun 1994 - 12:30,Group E,Citrus Bowl,Orlando ,Mexico,2,1,"Republic of Ireland", ,60790,1,0
 1994,24 Jun 1994 - 19:30,Group B,Pontiac Silverdome,Detroit ,Sweden,3,1,Russia, ,71528,1,1
 1994,24 Jun 1994 - 16:00,Group B,Stanford Stadium,San Francisco ,Brazil,3,0,Cameroon, ,83401,1,0
 1994,25 Jun 1994 - 12:30,Group F,Citrus Bowl,Orlando ,Belgium,1,0,Netherlands, ,62387,0,0
@@ -491,7 +491,7 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 1994,26 Jun 1994 - 16:00,Group A,Stanford Stadium,San Francisco ,Switzerland,0,2,Colombia, ,83401,0,1
 1994,27 Jun 1994 - 16:00,Group C,Cotton Bowl,Dallas ,Germany,3,2,Korea Republic, ,63998,3,0
 1994,27 Jun 1994 - 16:00,Group C,Soldier Field,Chicago ,Bolivia,1,3,Spain, ,63089,0,1
-1994,28 Jun 1994 - 12:30,Group E,Giants Stadium,New York/New Jersey ,"rn"">Republic of Ireland",0,0,Norway, ,72404,0,0
+1994,28 Jun 1994 - 12:30,Group E,Giants Stadium,New York/New Jersey ,"Republic of Ireland",0,0,Norway, ,72404,0,0
 1994,28 Jun 1994 - 16:00,Group B,Pontiac Silverdome,Detroit ,Brazil,1,1,Sweden, ,77217,0,1
 1994,28 Jun 1994 - 12:30,Group E,RFK Stadium,Washington Dc ,Italy,1,1,Mexico, ,52535,0,0
 1994,28 Jun 1994 - 16:00,Group B,Stanford Stadium,San Francisco ,Russia,6,1,Cameroon, ,74914,3,0
@@ -503,7 +503,7 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 1994,02 Jul 1994 - 16:30,Round of 16,RFK Stadium,Washington Dc ,Spain,3,0,Switzerland, ,53121,1,0
 1994,03 Jul 1994 - 12:00,Round of 16,Cotton Bowl,Dallas ,Saudi Arabia,1,3,Sweden, ,60277,0,1
 1994,03 Jul 1994 - 13:30,Round of 16,Rose Bowl,Los Angeles ,Romania,3,2,Argentina, ,90469,2,1
-1994,04 Jul 1994 - 12:00,Round of 16,Citrus Bowl,Orlando ,Netherlands,2,0,"rn"">Republic of Ireland", ,61355,2,0
+1994,04 Jul 1994 - 12:00,Round of 16,Citrus Bowl,Orlando ,Netherlands,2,0,"Republic of Ireland", ,61355,2,0
 1994,04 Jul 1994 - 12:30,Round of 16,Stanford Stadium,San Francisco ,Brazil,1,0,USA, ,84147,0,0
 1994,05 Jul 1994 - 13:00,Round of 16,Foxboro Stadium,Boston ,Nigeria,1,2,Italy,Italy win after extra time ,54367,0,0
 1994,05 Jul 1994 - 16:30,Round of 16,Giants Stadium,New York/New Jersey ,Mexico,1,1,Bulgaria,Bulgaria win on penalties (1 - 3),71030,0,0
@@ -581,7 +581,7 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 1998,12 Jul 1998 - 21:00,Final,Stade de France,Saint-Denis ,Brazil,0,3,France, ,80000,0,2
 2002,31 May 2002 - 20:30,Group A,Seoul World Cup Stadium,Seoul ,France,0,1,Senegal, ,62561,0,1
 2002,01 Jun 2002 - 18:00,Group A,Munsu Football Stadium,Ulsan ,Uruguay,1,2,Denmark, ,30157,0,1
-2002,01 Jun 2002 - 15:30,Group E,Niigata Stadium Big Swan,Niigata ,"rn"">Republic of Ireland",1,1,Cameroon, ,33679,0,1
+2002,01 Jun 2002 - 15:30,Group E,Niigata Stadium Big Swan,Niigata ,"Republic of Ireland",1,1,Cameroon, ,33679,0,1
 2002,01 Jun 2002 - 20:30,Group E,Sapporo Dome,Sapporo ,Germany,8,0,Saudi Arabia, ,32218,4,0
 2002,02 Jun 2002 - 14:30,Group F,Kashima Stadium,Ibaraki ,Argentina,1,0,Nigeria, ,34050,0,0
 2002,02 Jun 2002 - 16:30,Group B,Busan Asiad Main Stadium,Busan ,Paraguay,2,2,South Africa, ,25186,1,0
@@ -590,12 +590,12 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 2002,03 June 2002 - 18:00,Group C,Munsu Football Stadium,Ulsan ,Brazil,2,1,Turkey, ,33842,0,1
 2002,03 Jun 2002 - 20:30,Group G,Sapporo Dome,Sapporo ,Italy,2,0,Ecuador, ,31081,2,0
 2002,03 Jun 2002 - 15:30,Group G,Niigata Stadium Big Swan,Niigata ,Croatia,0,1,Mexico, ,32239,0,0
-2002,04 June 2002 - 15:30,Group C,Gwangju World Cup Stadium,Gwangju ,China PR,0,2,Costa Rica, ,27217,0,0
+2002,04 June 2002 - 15:30,Group C,Gwangju World Cup Stadium,Gwangju ,China,0,2,Costa Rica, ,27217,0,0
 2002,04 June 2002 - 18:00,Group H,Saitama Stadium 2002,Saitama ,Japan,2,2,Belgium, ,55256,0,0
 2002,04 Jun 2002 - 20:30,Group D,Busan Asiad Main Stadium,Busan ,Korea Republic,2,0,Poland, ,48760,1,0
 2002,05 Jun 2002 - 15:30,Group H,Kobe Wing Stadium,Kobe ,Russia,2,0,Tunisia, ,30957,0,0
 2002,05 Jun 2002 - 18:00,Group D,Suwon World Cup Stadium,Suwon ,USA,3,2,Portugal, ,37306,3,1
-2002,05 Jun 2002 - 20:30,Group E,Kashima Stadium,Ibaraki ,Germany,1,1,"rn"">Republic of Ireland", ,35854,1,0
+2002,05 Jun 2002 - 20:30,Group E,Kashima Stadium,Ibaraki ,Germany,1,1,"Republic of Ireland", ,35854,1,0
 2002,06 Jun 2002 - 15:30,Group A,Daegu World Cup Stadium,Daegu ,Denmark,1,1,Senegal, ,43500,1,0
 2002,06 Jun 2002 - 18:00,Group E,Saitama Stadium 2002,Saitama ,Cameroon,1,0,Saudi Arabia, ,52328,0,0
 2002,06 Jun 2002 - 20:30,Group A,Busan Asiad Main Stadium,Busan ,France,0,0,Uruguay, ,38289,0,0
@@ -603,7 +603,7 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 2002,07 Jun 2002 - 20:30,Group F,Sapporo Dome,Sapporo ,Argentina,0,1,England, ,35927,0,1
 2002,07 June 2002 - 18:00,Group B,Jeonju World Cup Stadium,Jeonju ,Spain,3,1,Paraguay, ,24000,0,1
 2002,08 Jun 2002 - 15:30,Group B,Daegu World Cup Stadium,Daegu ,South Africa,1,0,Slovenia, ,47226,1,0
-2002,08 Jun 2002 - 20:30,Group C,Jeju World Cup Stadium,Jeju ,Brazil,4,0,China PR, ,36750,3,0
+2002,08 Jun 2002 - 20:30,Group C,Jeju World Cup Stadium,Jeju ,Brazil,4,0,China, ,36750,3,0
 2002,08 June 2002 - 18:00,Group G,Kashima Stadium,Ibaraki ,Italy,1,2,Croatia, ,36472,0,0
 2002,09 Jun 2002 - 18:00,Group C,Incheon Football Stadium,Incheon ,Costa Rica,1,1,Turkey, ,42299,0,0
 2002,09 Jun 2002 - 20:30,Group H,International Stadium Yokohama,Yokohama ,Japan,1,0,Russia, ,66108,0,0
@@ -613,14 +613,14 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 2002,10 Jun 2002 - 18:00,Group H,Oita Stadium Big Eye,Oita ,Tunisia,1,1,Belgium, ,39700,1,1
 2002,11 Jun 2002 - 15:30,Group A,Incheon Football Stadium,Incheon ,Denmark,2,0,France, ,48100,1,0
 2002,11 June 2002 - 15:30,Group A,Suwon World Cup Stadium,Suwon ,Senegal,3,3,Uruguay, ,33681,3,0
-2002,11 Jun 2002 - 20:30,Group E,International Stadium Yokohama,Yokohama ,Saudi Arabia,0,3,"rn"">Republic of Ireland", ,65320,0,1
+2002,11 Jun 2002 - 20:30,Group E,International Stadium Yokohama,Yokohama ,Saudi Arabia,0,3,"Republic of Ireland", ,65320,0,1
 2002,11 Jun 2002 - 20:30,Group E,Shizuoka Stadium Ecopa,Shizuoka ,Cameroon,0,2,Germany, ,47085,0,0
 2002,12 Jun 2002 - 15:30,Group F,Miyagi Stadium,Rifu ,Sweden,1,1,Argentina, ,45777,0,0
 2002,12 Jun 2002 - 15:30,Group F,Osaka Nagai Stadium,Osaka ,Nigeria,0,0,England, ,44864,0,0
 2002,12 Jun 2002 - 20:30,Group B,Jeju World Cup Stadium,Jeju ,Slovenia,1,3,Paraguay, ,30176,1,0
 2002,12 Jun 2002 - 20:30,Group B,Daejeon World Cup Stadium,Daejeon ,South Africa,2,3,Spain, ,31024,1,2
 2002,13 Jun 2002 - 15:30,Group C,Suwon World Cup Stadium,Suwon ,Costa Rica,2,5,Brazil, ,38524,1,3
-2002,13 Jun 2002 - 15:30,Group C,Seoul World Cup Stadium,Seoul ,Turkey,3,0,China PR, ,43605,2,0
+2002,13 Jun 2002 - 15:30,Group C,Seoul World Cup Stadium,Seoul ,Turkey,3,0,China, ,43605,2,0
 2002,13 Jun 2002 - 20:30,Group G,International Stadium Yokohama,Yokohama ,Ecuador,1,0,Croatia, ,65862,0,0
 2002,13 Jun 2002 - 20:30,Group G,Oita Stadium Big Eye,Oita ,Mexico,1,1,Italy, ,39291,1,0
 2002,14 Jun 2002 - 15:30,Group H,Osaka Nagai Stadium,Osaka ,Tunisia,0,2,Japan, ,45213,0,0
@@ -629,7 +629,7 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 2002,14 Jun 2002 - 15:30,Group H,Shizuoka Stadium Ecopa,Shizuoka ,Belgium,3,2,Russia, ,46640,1,0
 2002,15 Jun 2002 - 20:30,Round of 16,Niigata Stadium Big Swan,Niigata ,Denmark,0,3,England, ,40582,0,3
 2002,15 Jun 2002 - 15:30,Round of 16,Jeju World Cup Stadium,Jeju ,Germany,1,0,Paraguay, ,25176,0,0
-2002,16 Jun 2002 - 20:30,Round of 16,Suwon World Cup Stadium,Suwon ,Spain,1,1,"rn"">Republic of Ireland",Spain win on penalties (3 - 2),38926,0,0
+2002,16 Jun 2002 - 20:30,Round of 16,Suwon World Cup Stadium,Suwon ,Spain,1,1,"Republic of Ireland",Spain win on penalties (3 - 2),38926,0,0
 2002,16 Jun 2002 - 15:30,Round of 16,Oita Stadium Big Eye,Oita ,Sweden,1,2,Senegal,Win on Golden Goal ,39747,0,0
 2002,17 Jun 2002 - 20:30,Round of 16,Kobe Wing Stadium,Kobe ,Brazil,2,0,Belgium, ,40440,0,0
 2002,17 June 2002 - 15:30,Round of 16,Jeonju World Cup Stadium,Jeonju ,Mexico,0,2,USA, ,36380,0,1
@@ -646,9 +646,9 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 2006,09 Jun 2006 - 18:00,Group A,"FIFA World Cup Stadium, Munich",Munich ,Germany,4,2,Costa Rica, ,66000,2,1
 2006,09 Jun 2006 - 21:00,Group A,"FIFA World Cup Stadium, Gelsenkirchen",Gelsenkirchen ,Poland,0,2,Ecuador, ,52000,0,1
 2006,10 Jun 2006 - 15:00,Group B,"FIFA World Cup Stadium, Frankfurt",Frankfurt/Main ,England,1,0,Paraguay, ,48000,1,0
-2006,10 Jun 2006 - 18:00,Group B,"FIFA World Cup Stadium, Dortmund",Dortmund ,"rn"">Trinidad and Tobago",0,0,Sweden, ,62959,0,0
+2006,10 Jun 2006 - 18:00,Group B,"FIFA World Cup Stadium, Dortmund",Dortmund ,"Trinidad and Tobago",0,0,Sweden, ,62959,0,0
 2006,10 Jun 2006 - 21:00,Group C,"FIFA World Cup Stadium, Hamburg",Hamburg ,Argentina,2,1,C�te d'Ivoire, ,49480,2,0
-2006,11 Jun 2006 - 15:00,Group C,Zentralstadion,Leipzig ,"rn"">Serbia and Montenegro",0,1,Netherlands, ,43000,0,1
+2006,11 Jun 2006 - 15:00,Group C,Zentralstadion,Leipzig ,"Serbia and Montenegro",0,1,Netherlands, ,43000,0,1
 2006,11 Jun 2006 - 18:00,Group D,Franken-Stadion,Nuremberg ,Mexico,3,1,Iran, ,41000,1,1
 2006,11 Jun 2006 - 21:00,Group D,"FIFA World Cup Stadium, Cologne",Cologne ,Angola,0,1,Portugal, ,45000,0,1
 2006,12 Jun 2006 - 15:00,Group F,Fritz-Walter-Stadion,Kaiserslautern ,Australia,3,1,Japan, ,46000,0,1
@@ -661,9 +661,9 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 2006,14 Jun 2006 - 18:00,Group H,"FIFA World Cup Stadium, Munich",Munich ,Tunisia,2,2,Saudi Arabia, ,66000,1,0
 2006,14 Jun 2006 - 21:00,Group A,"FIFA World Cup Stadium, Dortmund",Dortmund ,Germany,1,0,Poland, ,65000,0,0
 2006,15 Jun 2006 - 15:00,Group A,"FIFA World Cup Stadium, Hamburg",Hamburg ,Ecuador,3,0,Costa Rica, ,50000,1,0
-2006,15 Jun 2006 - 18:00,Group B,Franken-Stadion,Nuremberg ,England,2,0,"rn"">Trinidad and Tobago", ,41000,0,0
+2006,15 Jun 2006 - 18:00,Group B,Franken-Stadion,Nuremberg ,England,2,0,"Trinidad and Tobago", ,41000,0,0
 2006,15 Jun 2006 - 21:00,Group B,Olympiastadion,Berlin ,Sweden,1,0,Paraguay, ,72000,0,0
-2006,16 Jun 2006 - 15:00,Group C,"FIFA World Cup Stadium, Gelsenkirchen",Gelsenkirchen ,Argentina,6,0,"rn"">Serbia and Montenegro", ,52000,3,0
+2006,16 Jun 2006 - 15:00,Group C,"FIFA World Cup Stadium, Gelsenkirchen",Gelsenkirchen ,Argentina,6,0,"Serbia and Montenegro", ,52000,3,0
 2006,16 Jun 2006 - 18:00,Group C,Gottlieb-Daimler-Stadion,Stuttgart ,Netherlands,2,1,C�te d'Ivoire, ,52000,2,1
 2006,16 Jun 2006 - 21:00,Group D,"FIFA World Cup Stadium, Hanover",Hanover ,Mexico,0,0,Angola, ,43000,0,0
 2006,17 Jun 2006 - 15:00,Group D,"FIFA World Cup Stadium, Frankfurt",Frankfurt/Main ,Portugal,2,0,IR Iran, ,48000,0,0
@@ -678,11 +678,11 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 2006,20 Jun 2006 - 16:00,Group A,Olympiastadion,Berlin ,Ecuador,0,3,Germany, ,72000,0,2
 2006,20 Jun 2006 - 16:00,Group A,"FIFA World Cup Stadium, Hanover",Hanover ,Costa Rica,1,2,Poland, ,43000,1,1
 2006,20 Jun 2006 - 21:00,Group B,"FIFA World Cup Stadium, Cologne",Cologne ,Sweden,2,2,England, ,45000,0,1
-2006,20 Jun 2006 - 21:00,Group B,Fritz-Walter-Stadion,Kaiserslautern ,Paraguay,2,0,"rn"">Trinidad and Tobago", ,46000,1,0
+2006,20 Jun 2006 - 21:00,Group B,Fritz-Walter-Stadion,Kaiserslautern ,Paraguay,2,0,"Trinidad and Tobago", ,46000,1,0
 2006,21 Jun 2006 - 16:00,Group D,Zentralstadion,Leipzig ,Iran,1,1,Angola, ,38000,0,0
 2006,21 Jun 2006 - 16:00,Group D,"FIFA World Cup Stadium, Gelsenkirchen",Gelsenkirchen ,Portugal,2,1,Mexico, ,52000,2,1
 2006,21 Jun 2006 - 21:00,Group C,"FIFA World Cup Stadium, Frankfurt",Frankfurt/Main ,Netherlands,0,0,Argentina, ,48000,0,0
-2006,21 Jun 2006 - 21:00,Group C,"FIFA World Cup Stadium, Munich",Munich ,C�te d'Ivoire,3,2,"rn"">Serbia and Montenegro", ,66000,1,2
+2006,21 Jun 2006 - 21:00,Group C,"FIFA World Cup Stadium, Munich",Munich ,C�te d'Ivoire,3,2,"Serbia and Montenegro", ,66000,1,2
 2006,22 Jun 2006 - 16:00,Group E,"FIFA World Cup Stadium, Hamburg",Hamburg ,Czech Republic,0,2,Italy, ,50000,0,1
 2006,22 Jun 2006 - 16:00,Group E,Franken-Stadion,Nuremberg ,Ghana,2,1,USA, ,41000,2,1
 2006,22 Jun 2006 - 21:00,Group F,"FIFA World Cup Stadium, Dortmund",Dortmund ,Japan,1,4,Brazil, ,65000,1,1
@@ -781,7 +781,7 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 2014,14 Jun 2014 - 22:00,Group C,Arena Pernambuco,Recife ,C�te d'Ivoire,2,1,Japan, ,40267,0,1
 2014,15 Jun 2014 - 13:00,Group E,Estadio Nacional,Brasilia ,Switzerland,2,1,Ecuador, ,68351,0,1
 2014,15 Jun 2014 - 16:00,Group E,Estadio Beira-Rio,Porto Alegre ,France,3,0,Honduras, ,43012,1,0
-2014,15 Jun 2014 - 19:00,Group F,Estadio do Maracana,Rio De Janeiro ,Argentina,2,1,"rn"">Bosnia and Herzegovina", ,74738,1,0
+2014,15 Jun 2014 - 19:00,Group F,Estadio do Maracana,Rio De Janeiro ,Argentina,2,1,"Bosnia and Herzegovina", ,74738,1,0
 2014,16 Jun 2014 - 13:00,Group G,Arena Fonte Nova,Salvador ,Germany,4,0,Portugal, ,51081,3,0
 2014,16 Jun 2014 - 16:00,Group F,Arena da Baixada,Curitiba ,IR Iran,0,0,Nigeria, ,39081,0,0
 2014,16 Jun 2014 - 19:00,Group G,Estadio das Dunas,Natal ,Ghana,1,2,USA, ,39760,0,1
@@ -799,7 +799,7 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 2014,20 Jun 2014 - 19:00,Group E,Arena da Baixada,Curitiba ,Honduras,1,2,Ecuador, ,39224,1,1
 2014,21 Jun 2014 - 13:00,Group F,Estadio Mineirao,Belo Horizonte ,Argentina,1,0,IR Iran, ,57698,0,0
 2014,21 Jun 2014 - 16:00,Group G,Estadio Castelao,Fortaleza ,Germany,2,2,Ghana, ,59621,0,0
-2014,21 Jun 2014 - 18:00,Group F,Arena Pantanal,Cuiaba ,Nigeria,1,0,"rn"">Bosnia and Herzegovina", ,40499,1,0
+2014,21 Jun 2014 - 18:00,Group F,Arena Pantanal,Cuiaba ,Nigeria,1,0,"Bosnia and Herzegovina", ,40499,1,0
 2014,22 Jun 2014 - 13:00,Group H,Estadio do Maracana,Rio De Janeiro ,Belgium,1,0,Russia, ,73819,0,0
 2014,22 Jun 2014 - 16:00,Group H,Estadio Beira-Rio,Porto Alegre ,Korea Republic,2,4,Algeria, ,42732,0,3
 2014,22 Jun 2014 - 18:00,Group G,Arena Amazonia,Manaus ,USA,2,2,Portugal, ,40123,0,1
@@ -812,7 +812,7 @@ Year,Datetime,Stage,Stadium,City,Home Team Name,Home Team Goals,Away Team Goals,
 2014,24 Jun 2014 - 16:00,Group C,Arena Pantanal,Cuiaba ,Japan,1,4,Colombia, ,40340,1,1
 2014,24 Jun 2014 - 17:00,Group C,Estadio Castelao,Fortaleza ,Greece,2,1,C�te d'Ivoire, ,59095,1,0
 2014,25 Jun 2014 - 13:00,Group F,Estadio Beira-Rio,Porto Alegre ,Nigeria,2,3,Argentina, ,43285,1,2
-2014,25 Jun 2014 - 13:00,Group F,Arena Fonte Nova,Salvador ,"rn"">Bosnia and Herzegovina",3,1,IR Iran, ,48011,1,0
+2014,25 Jun 2014 - 13:00,Group F,Arena Fonte Nova,Salvador ,"Bosnia and Herzegovina",3,1,IR Iran, ,48011,1,0
 2014,25 Jun 2014 - 16:00,Group E,Arena Amazonia,Manaus ,Honduras,0,3,Switzerland, ,40322,0,2
 2014,25 Jun 2014 - 17:00,Group E,Estadio do Maracana,Rio De Janeiro ,Ecuador,0,0,France, ,73749,0,0
 2014,26 Jun 2014 - 13:00,Group G,Arena Pernambuco,Recife ,USA,0,1,Germany, ,41876,0,0

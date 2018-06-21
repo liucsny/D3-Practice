@@ -1,7 +1,7 @@
 module.exports = function (vm) {
-  let margin = {top: 20, right: 20, bottom: 30, left: 60}
+  let margin = {top: 200, right: 200, bottom: 30, left: 200}
   let width = vm.$refs.chartArea.offsetWidth * 0.95
-  let height = 600
+  let height = 20000
   let innerWidth = width - margin.left - margin.right
   let innerHeight = height - margin.top - margin.bottom
 
@@ -10,8 +10,8 @@ module.exports = function (vm) {
               .attr('height', height)
               .attr('width', width)
 
-  // const g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-  const g = svg.append("g").attr("transform", "translate(" + innerWidth/2 + "," + innerHeight/2 + ")")
+  const g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+  // const g = svg.append("g").attr("transform", "translate(" + innerWidth/2 + "," + innerHeight/2 + ")")
 
   let parseTime = {
     Datetime: d3.timeParse("%d %b %Y - %H:%M"),
@@ -22,7 +22,7 @@ module.exports = function (vm) {
   .range([0.1*Math.PI, 1.9*Math.PI])
   .align(1)
 
-  let x = d3.scalePoint().rangeRound([0,innerWidth/2])
+  let x = d3.scaleBand().rangeRound([0,innerWidth/2])
 
   d3.csv('/static/World_Cup.csv',function(d){
     let numAttr = ['Half-time Away Goals', 'Half-time Home Goals', 'Home Team Goals', 'Away Team Goals', 'Attendance']
@@ -49,80 +49,246 @@ module.exports = function (vm) {
       }).entries(data)
     // console.log(nestData)
 
-    let sampleData = nestData[5].values
+    // let sampleData = nestData.slice(12,22)
     // console.log(sampleData)
+    // console.log(nestData[i].key)
 
-    const histogram = d3.histogram()
-                        .value(function(d) { return d['year'] })
-                        .thresholds(x.domain())
+    // const histogram = d3.histogram()
+    //                     .value(function(d) { return d['year'] })
+    //                     .thresholds(x.domain())
+    // 公用一个好像会有问题
             
     // console.log(x.domain())
-    const bins = histogram(sampleData)
+    let graphGroups = g.selectAll('.graph')
+                      .data(nestData)
+                      .enter()
+                      .append('g')
+                      .attr('class','graph')
+                      .attr('transform',function(d ,i){
+                        let columnGap = 400
+                        let rowGap = 400
+                        let x = i%2 * columnGap
+                        let y = Math.floor(i/2) * rowGap
+                        // console.log(i)
+                        // console.log(x,'  ',y)
+                        return `translate(${x},${y})`
+                      })
+
+          // graphGroups.append('circle')
+          //             .attr('cx', 0)
+          //             .attr('cy', 0)
+          //             .attr('r', 2)
+                    
+          graphGroups.append('text')
+                    .text(function(d) {
+                      console.log(d)
+                      return d['key']
+                    })
+                    .attr("text-anchor", "middle")
+                    .attr('y', 0)
+                    .attr('fill', 'royalBlue')
+                    .attr('font-size','12px')
+
+    // const bins = histogram(sampleData)
     // console.log(bins)
 
-    let binContainer = g.append('g')
-                        .selectAll('circle')
-                        .data(bins)
+    let graphs = graphGroups.append('g')
+                      .attr('class',function(d){
+                        // console.log(d)
+                        return d['key']
+                      })
+                    .selectAll('.gBin')
+                    .data(function(d){
+                      // console.log(d)
+                      let histogram = d3.histogram()
+                                        .value(function(d) { return d['year'] })
+                                        .thresholds(x.domain())
 
-    let binContainerEnter = binContainer.enter()
-                                        .append("g")
-                                        .attr("class", "gBin")
-                                        // .attr("transform", d => `translate(${x(d.x0)}, ${innerHeight/2})`)
-                                        // .append("g")
-                                        .attr("transform", function(d) { return "rotate(" + ( xRadial(d.x0) * 180 / Math.PI ) + ")translate(" + 0 + ",0)"; })
-                                        .attr("transform-origin", "0% 15%")                                        
-                                        // .attr("transform", function(d) { return "rotate(" + (xRadial(d.x0) * 180 / Math.PI - 90) + ")translate(" + 0 + ",0)"; });
+                      // console.log(histogram(d.values))
+                      return histogram(d.values)
+                    })
+                    .enter()
+                    .append("g")
+                    .attr("class", "gBin")
+                    .attr("transform", function(d) {
+                      // console.log(d)
+                      // return "rotate(20)"
+                      return "rotate(" + ( xRadial(d.x0) * 180 / Math.PI ) + ")translate(0,-50)"
+                    })
+                    .attr("transform-origin", "0 0")
+
+
+    graphs.selectAll("g")
+          .data(function(d){
+            return d.map(function(p,i){
+                        p.index = i
+                        return p
+                      })
+                      .sort(function(d){ return d['Datetime'] })
+          })
+          .enter()
+          .append('g')
+          .attr('transform',function(d){
+            // console.log(d)
+            return `translate(0, ${-d.index*16} )`
+          })
+          .selectAll('circle')
+          .data(function(d){
+            // console.log(d)
+            let array = []
+            for (let i = 0; i <= d['Goals']; i++) {
+              array.push({
+                index : i,
+                country : d['country']
+              })
+            }
+            // console.log(array)
+            return array
+          })
+          .enter()
+          .append('circle')
+            .attr('cx', 0)
+            .attr('cy', 0)
+            .attr('r', function(d){
+              if(d.index === 0){
+                return 2
+              }else{
+                return ( d.index ) * 3
+              }
+            })
+            .attr('fill',function(d){
+              if(d.index === 0){
+                return 'rgba(0,0,0,.2)'
+              }else{
+                return 'none'
+              }
+            })
+            .attr('stroke', function(d){
+              if(d.index === 0){
+                return 'none'
+              }else{
+                return 'black'
+              }
+            })
+
+    // graphs.selectAll("g")
+    //       .data(function(d){
+    //         // console.log(d)
+    //         return d.map(function(p,i){
+    //           p.index = i
+    //           return p
+    //         })
+    //         .sort(function(d){ return d['Datetime'] })
+    //       })
+    //       .enter()
+    //       .append('g')
+    //       .attr('transform',function(d){
+    //         return `translate(0, ${-d.index*16} )`
+    //       })
+    //       .selectAll('circle')
+    //       .data(function(d){
+    //         let array = []
+    //         for (let i = 0; i <= d['Goals']; i++) {
+    //           array.push({
+    //             index : i
+    //           })
+    //         }
+    //         return array
+    //       })
+    //       .enter()
+    //       .append('circle')
+    //         .attr('cx', 0)
+    //         .attr('cy', 0)
+    //         .attr('r', function(d){
+    //           if(d.index === 0){
+    //             return 2
+    //           }else{
+    //             return ( d.index ) * 3
+    //           }
+    //         })
+    //         .attr('fill',function(d){
+    //           if(d.index === 0){
+    //             return 'rgba(0,0,0,.2)'
+    //           }else{
+    //             return 'none'
+    //           }
+    //         })
+    //         .attr('stroke', function(d){
+    //           if(d.index === 0){
+    //             return 'none'
+    //           }else{
+    //             return 'black'
+    //           }
+    //         })
+
+    // ==============================================
+    // let binContainer = g.append('g')
+    //                     .selectAll('circle')
+    //                     .data(bins)
+
+    // let binContainerEnter = binContainer.enter()
+    //                                     .append("g")
+    //                                     .attr("class", "gBin")
+    //                                     // .attr("transform", d => `translate(${x(d.x0)}, ${innerHeight/2})`)
+    //                                     // .append("g")
+    //                                     .attr("transform", function(d) { return "rotate(" + ( xRadial(d.x0) * 180 / Math.PI ) + ")translate(" + 0 + ",0)"; })
+    //                                     .attr("transform-origin", "0% 15%")                                        
+    //                                     // .attr("transform", function(d) { return "rotate(" + (xRadial(d.x0) * 180 / Math.PI - 90) + ")translate(" + 0 + ",0)"; });
                                         
-    binContainerEnter.selectAll("circle")
-    .data(function(d){
-      return d.map(function(p,i){
-        p.index = i
-        return p
-      }).sort(function(d){ return d['Datetime'] })
-    })
-    .enter()
-    .append('g')
-    .attr('transform',function(d){
-      return `translate(0, ${-d.index*16} )`
-    })
-    .selectAll('circle')
-    .data(function(d){
-      // console.log(d)
-      let array = []
-      for (let i = 0; i <= d['Goals']; i++) {
-        array.push({
-          index : i
-        })
-      }
-      // console.log(d)
-      // console.log(array)
-      return array
-    })
-    .enter()
-    .append('circle')
-      .attr('cx', 0)
-      .attr('cy', 0)
-      .attr('r', function(d){
-        if(d.index === 0){
-          return 2
-        }else{
-          return ( d.index ) * 3
-        }
-      })
-      .attr('fill',function(d){
-        if(d.index === 0){
-          return 'rgba(0,0,0,.2)'
-        }else{
-          return 'none'
-        }
-      })
-      .attr('stroke', function(d){
-        if(d.index === 0){
-          return 'none'
-        }else{
-          return 'black'
-        }
-      })
+    // binContainerEnter.selectAll("circle")
+    // .data(function(d){
+    //   return d.map(function(p,i){
+    //     p.index = i
+    //     return p
+    //   }).sort(function(d){ return d['Datetime'] })
+    // })
+    // .enter()
+    // .append('g')
+    // .attr('transform',function(d){
+    //   return `translate(0, ${-d.index*16} )`
+    // })
+    // .selectAll('circle')
+    // .data(function(d){
+    //   // console.log(d)
+    //   let array = []
+    //   for (let i = 0; i <= d['Goals']; i++) {
+    //     array.push({
+    //       index : i
+    //     })
+    //   }
+    //   // console.log(d)
+    //   // console.log(array)
+    //   return array
+    // })
+    // .enter()
+    // .append('circle')
+    //   .attr('cx', 0)
+    //   .attr('cy', 0)
+    //   .attr('r', function(d){
+    //     if(d.index === 0){
+    //       return 2
+    //     }else{
+    //       return ( d.index ) * 3
+    //     }
+    //   })
+    //   .attr('fill',function(d){
+    //     if(d.index === 0){
+    //       return 'rgba(0,0,0,.2)'
+    //     }else{
+    //       return 'none'
+    //     }
+    //   })
+    //   .attr('stroke', function(d){
+    //     if(d.index === 0){
+    //       return 'none'
+    //     }else{
+    //       return 'black'
+    //     }
+    //   })
+
+
+
+
       // .attr('cy', function(d){
       //   console.log(d)
       //   return -d.index*16 
