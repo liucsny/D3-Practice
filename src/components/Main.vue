@@ -1,7 +1,10 @@
 <template>
-  <section class="mw7 center">
-    <h2 class="fw4 f2 ph3 ph0-l">Learning D3</h2>
-    <appListItem v-for="(item, index) of d3_list" :key="index" :linkto="item.link" :title="item.name" :imgUrl="item.img"  :tags="item.tags"/>
+  <section class="mw8 center">
+    <div class="flex flex-wrap mt4">
+      <div class="w-100 w-25-ns pa3" v-for="(item, index) of d3_list" :key="index">
+        <appListItem :linkto="item.link" :title="item.name" :imgUrl="item.img"  :tags="item.tags"/>
+      </div>
+    </div>
   </section>
 </template>
 
