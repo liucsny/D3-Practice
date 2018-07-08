@@ -103,7 +103,13 @@ export default {
         { 
           name:'World Cup 2',
           link: '/d3/World_Cup_2',
-          img: require('../../src/assets/thumbnail/default.png'),
+          img: require('../../src/assets/thumbnail/World_Cup_2.png'),
+          // tags: ['d3.forceSimulation()', 'd3.on("tick",()=>{})']
+        },
+        { 
+          name:'World Cup All',
+          link: '/d3/World_Cup_2_1',
+          img: require('../../src/assets/thumbnail/World_Cup_2.png'),
           // tags: ['d3.forceSimulation()', 'd3.on("tick",()=>{})']
         },
         { 
