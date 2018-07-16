@@ -5,9 +5,9 @@ import App from './App'
 import router from './router'
 import '../node_modules/tachyons/css/tachyons.min.css'
 import * as d3 from 'd3'
-import html2canvas from 'html2canvas'
+import d3_save_svg from 'd3-save-svg'
 
-window.html2canvas = html2canvas
+window.d3_save_svg = d3_save_svg
 window.d3 = d3
 
 Vue.config.productionTip = false

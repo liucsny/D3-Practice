@@ -98,12 +98,6 @@ export default {
           // tags: ['d3.bisector(comparator)']
         },
         { 
-          name:'World Cup 2',
-          link: '/d3/World_Cup_2',
-          img: require('../../src/assets/thumbnail/default.png'),
-          // tags: ['d3.forceSimulation()', 'd3.on("tick",()=>{})']
-        },
-        { 
           name:'Dot Plot Histogram',
           link: '/d3/Dot_Plot_Histogram',
           img: require('../../src/assets/thumbnail/Dot_Plot_Histogram.png'),
@@ -115,6 +109,24 @@ export default {
           img: require('../../src/assets/thumbnail/Histogram.png'),
           tags: ['d3.histogram()']
         },
+        { 
+          name:'World Cup 2',
+          link: '/d3/World_Cup_2',
+          img: require('../../src/assets/thumbnail/World_Cup_2.png'),
+          // tags: ['d3.forceSimulation()', 'd3.on("tick",()=>{})']
+        },
+        { 
+          name:'Dendrogram',
+          link: '/d3/Dendrogram',
+          img: require('../../src/assets/thumbnail/Dendrogram.png'),
+          tags: ['d3.stratify()', 'd3.cluster()']
+        },
+        { 
+          name:'Zoomable Circle Packing',
+          link: '/d3/Zoomable_Circle_Packing',
+          img: require('../../src/assets/thumbnail/default.png'),
+          // tags: ['d3.stratify()', 'd3.cluster()']
+        },
       ]
     }
   },
@@ -122,6 +134,5 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 </style>

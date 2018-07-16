@@ -1,7 +1,7 @@
 module.exports = function (vm) {
-  let margin = {top: 400, right: 160, bottom: 30, left: 400}
+  let margin = {top: 400, right: 160, bottom: 30, left: 270}
   let width = vm.$refs.chartArea.offsetWidth * 0.95
-  let height = 25000
+  let height = 24000
   let innerWidth = width - margin.left - margin.right
   let innerHeight = height - margin.top - margin.bottom
 
@@ -27,6 +27,10 @@ module.exports = function (vm) {
   .align(1)
 
   let x = d3.scaleBand().rangeRound([0,innerWidth/2])
+
+  // let color = d3.scaleLinear()
+  //   .domain([-10, 10])
+  //   .range(["blue", "yellow"]);
 
   d3.csv('/static/World_Cup.csv',function(d){
     let numAttr = ['Half-time Away Goals', 'Half-time Home Goals', 'Home Team Goals', 'Away Team Goals', 'Attendance']
@@ -77,8 +81,8 @@ module.exports = function (vm) {
                       .append('g')
                       .attr('class','graph')
                       .attr('transform',function(d ,i){
-                        let columnGap = 620
-                        let rowGap = 650
+                        let columnGap = 430
+                        let rowGap = 560
                         let x = i%2 * columnGap
                         let y = Math.floor(i/2) * rowGap
                         // console.log(i)
@@ -206,6 +210,7 @@ module.exports = function (vm) {
                     })
                     .attr("transform-origin", "0 0")
 
+    // console.log(d3_save_svg)
 
     graphs.selectAll("g")
           .data(function(d){
@@ -223,12 +228,14 @@ module.exports = function (vm) {
           })
           .selectAll('circle')
           .data(function(d){
-            // console.log(d)
+            console.log(d)
             let array = []
             for (let i = 0; i <= d['Goals']; i++) {
               array.push({
                 index : i,
-                country : d['country']
+                country : d['country'],
+                Opponent_Goals : d['Opponent_Goals'],
+                Goals : d['Goals']
               })
             }
             // console.log(array)
@@ -247,20 +254,36 @@ module.exports = function (vm) {
             })
             .attr('fill',function(d){
               if(d.index === 0){
+                // if (d.Goals < d.Opponent_Goals) {
+                //   return 'red'
+                // }else if(d.Goals === d.Opponent_Goals){
+                //   return 'yellow'
+                // }else{
+                //   return 'royalBlue'
+                // }
                 return 'rgba(255,255,255,.6)'
               }else{
                 return 'none'
               }
             })
             .attr('stroke', function(d){
+              // console.log(d)
               if(d.index === 0){
                 return 'none'
               }else{
+
+                // return color(d.Goals - d.Opponent_Goals)
+                // if (d.Goals > d.Opponent_Goals) {
+                //   return 'royalBlue'
+                // }else if(d.Goals === d.Opponent_Goals){
+                //   return '#573CAD'
+                // }else{
+                //   return '#4B53C4'
+                // }
                 return 'white'
               }
             })
-            .attr('stroke-width','.8')
-
+            .attr('stroke-width','.6')
   })
 
   function flattenData (data) {
@@ -295,6 +318,19 @@ module.exports = function (vm) {
 
     return newData
   }
+
+  d3.select(vm.$refs.chartArea)
+  .append('div')
+  .attr('class','tr')
+  .append('button')
+  .text('export')
+  .attr('class',"f6 link dim br2 ph4 pv3 ma4 dib white bg-blue pointer")
+  .on('click', function() {
+    var config = {
+      filename: 'World_Cup',
+    }
+    d3_save_svg.save(d3.select('svg').node(), config);
+  });
 
   vm.$refs.notes.innerHTML = `
   <p>可以使用<pre>

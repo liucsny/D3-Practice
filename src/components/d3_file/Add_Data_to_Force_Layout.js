@@ -30,9 +30,9 @@ module.exports = function (vm) {
 
   let data = randomData(20)
 
-//   let stratify = d3.stratify()
-//                 .id(d => d.id)
-//                 .parentId(d => d.parent)
+  let stratify = d3.stratify()
+                .id(d => d.id)
+                .parentId(d => d.parent)
 
 //   let pack = d3.pack().size([diameter - 4, diameter - 4])
 
