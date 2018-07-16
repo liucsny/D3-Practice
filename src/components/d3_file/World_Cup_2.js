@@ -1,9 +1,13 @@
 module.exports = function (vm) {
-  let margin = {top: 400, right: 160, bottom: 30, left: 270}
+
+  let margin = {top: 100, right: 160, bottom: 30, left: 100}
   let width = vm.$refs.chartArea.offsetWidth * 0.95
-  let height = 24000
+  let height = 700
   let innerWidth = width - margin.left - margin.right
   let innerHeight = height - margin.top - margin.bottom
+
+  let SelectGroup = d3.select(vm.$refs.chartArea).append('div').attr('class', 'tl flex')
+  let select = SelectGroup.append('p').attr('class', 'mr3').text('Nation').append('select').attr('id', 'nation-menu').attr('class','mh2 w4')
 
   const svg = d3.select(vm.$refs.chartArea)
               .append('svg')
@@ -14,7 +18,7 @@ module.exports = function (vm) {
   let innerRadius = 120
   let outterRadius = 260
 
-  const g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+  const g = svg.append("g").attr("transform", "translate(" + width/2 + "," + height*0.45 + ")")
   // const g = svg.append("g").attr("transform", "translate(" + innerWidth/2 + "," + innerHeight/2 + ")")
 
   let parseTime = {
@@ -53,6 +57,10 @@ module.exports = function (vm) {
                               return d.country
                             }).entries(data)
 
+    let nations = nestData.map(function(d){
+      return d.key
+    })
+
     let nestDataByYear = d3.nest().key(function(d) {
                                     return d.country
                                   }).key(function(d) {
@@ -67,109 +75,139 @@ module.exports = function (vm) {
                                     })
                                     return isWinner
                                   }).entries(data)
-                                  
+
     let nestDataByYearObject = {}
+
     nestDataByYear.forEach(function(d){
       nestDataByYearObject[d.key] = d.values
     })
 
-    // console.log(nestDataByYearObject)
+// <<<<<<< HEAD
+//     // console.log(nestDataByYearObject)
     
-    let graphGroups = g.selectAll('.graph')
-                      .data(nestData)
-                      .enter()
-                      .append('g')
-                      .attr('class','graph')
-                      .attr('transform',function(d ,i){
-                        let columnGap = 430
-                        let rowGap = 560
-                        let x = i%2 * columnGap
-                        let y = Math.floor(i/2) * rowGap
-                        // console.log(i)
-                        // console.log(x,'  ',y)
-                        return `translate(${x},${y})`
-                      })
+//     let graphGroups = g.selectAll('.graph')
+//                       .data(nestData)
+//                       .enter()
+//                       .append('g')
+//                       .attr('class','graph')
+//                       .attr('transform',function(d ,i){
+//                         let columnGap = 430
+//                         let rowGap = 560
+//                         let x = i%2 * columnGap
+//                         let y = Math.floor(i/2) * rowGap
+//                         // console.log(i)
+//                         // console.log(x,'  ',y)
+//                         return `translate(${x},${y})`
+//                       })
                     
-    graphGroups.append('text')
-              .text(function(d) {
-                // console.log(d)
-                return d['key']
-              })
-              .attr("font-family", "sans-serif")
-              .attr("text-anchor", "middle")
-              .attr('y', 0)
-              .attr('fill', 'white')
-              .attr('font-size','12px')
+//     graphGroups.append('text')
+//               .text(function(d) {
+//                 // console.log(d)
+//                 return d['key']
+//               })
+//               .attr("font-family", "sans-serif")
+//               .attr("text-anchor", "middle")
+//               .attr('y', 0)
+//               .attr('fill', 'white')
+//               .attr('font-size','12px')
 
 
-    // let stars = graphGroups.append("g")
-    //                       .selectAll("g")
-    //                       .data(function(d){
-    //                         console.log(d.key)
-    //                         return d
-    //                       }).enter()
-    //                       .append("g")
+//     // let stars = graphGroups.append("g")
+//     //                       .selectAll("g")
+//     //                       .data(function(d){
+//     //                         console.log(d.key)
+//     //                         return d
+//     //                       }).enter()
+//     //                       .append("g")
 
 
-    let labels = graphGroups.append("g")
-                            .selectAll("g")
-                            .data(function(d){
-                              let histogram = d3.histogram()
-                                                .value(function(d) { return d['year'] })
-                                                .thresholds(x.domain())
+//     let labels = graphGroups.append("g")
+//                             .selectAll("g")
+//                             .data(function(d){
+//                               let histogram = d3.histogram()
+//                                                 .value(function(d) { return d['year'] })
+//                                                 .thresholds(x.domain())
                                                 
-                              let data = histogram(x.domain())
-                              data.shift()
+//                               let data = histogram(x.domain())
+//                               data.shift()
 
-                              return data
-                            })
-                            .enter().append("g")
-                              .attr("transform", function(d) {
-                                // console.log(d)
-                                // return "rotate(" + ((x(d.km) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")translate(" + innerRadius + ",0)"
-                                return "rotate(" + ( xRadial(d.x0) * 180 / Math.PI ) + ")translate(0," + (-innerRadius) + ")"
-                              })
+//                               return data
+//                             })
+//                             .enter().append("g")
+//                               .attr("transform", function(d) {
+//                                 // console.log(d)
+//                                 // return "rotate(" + ((x(d.km) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")translate(" + innerRadius + ",0)"
+//                                 return "rotate(" + ( xRadial(d.x0) * 180 / Math.PI ) + ")translate(0," + (-innerRadius) + ")"
+//                               })
 
-    // let star = d3.symbol().type('symbolStar')
+//     // let star = d3.symbol().type('symbolStar')
 
-    // console.log(d3.symbols)
+//     // console.log(d3.symbols)
 
-    let stars = graphGroups.append("g")
-                            .selectAll("g")
-                            .data(function(d){
-                              return nestDataByYearObject[d.key]
-                            }).enter()
-                            .append('g')
-                            .attr("transform", function(d) {
-                              // console.log(d.key)
-                              return "rotate(" + ( xRadial(d.key) * 180 / Math.PI ) + ")translate(0," + (-outterRadius) + ")"
-                            })
-                            .append('path')
-                            .attr('fill',function(d){
-                              // console.log(d)
-                              if(d.value){
-                                return 'rgba(255,255,0,1)'
-                              }else{
-                                return 'rgba(255,255,255,0)'                                
-                              }
-                            })
-                            .attr('d', d3.symbol()
-                                        .size(80)
-                                        .type(d3.symbols[4])
-                            )
+//     let stars = graphGroups.append("g")
+//                             .selectAll("g")
+//                             .data(function(d){
+//                               return nestDataByYearObject[d.key]
+//                             }).enter()
+//                             .append('g')
+//                             .attr("transform", function(d) {
+//                               // console.log(d.key)
+//                               return "rotate(" + ( xRadial(d.key) * 180 / Math.PI ) + ")translate(0," + (-outterRadius) + ")"
+//                             })
+//                             .append('path')
+//                             .attr('fill',function(d){
+//                               // console.log(d)
+//                               if(d.value){
+//                                 return 'rgba(255,255,0,1)'
+//                               }else{
+//                                 return 'rgba(255,255,255,0)'                                
+//                               }
+//                             })
+//                             .attr('d', d3.symbol()
+//                                         .size(80)
+//                                         .type(d3.symbols[4])
+//                             )
+    // nations = nations.sort(function(a,b){
+    //   return ('' + a).localeCompare(b);
+    // })
 
+    nations.forEach(function(d){
+      let select = document.getElementById('nation-menu');
+      let ele = document.createElement("option");
+      ele.textContent = d;
+      ele.value = d;
+      select.appendChild(ele);
+    })
 
+    // 画时间骨架================================================
+    let labels = g.append("g")
+                  .selectAll("g")
+                  .data(function(d){
+                    let histogram = d3.histogram()
+                                      .value(function(d) { return d['year'] })
+                                      .thresholds(x.domain())
+
+                    let data = histogram(x.domain())
+                    data.shift()
+
+                    return data
+                  })
+                  .enter().append("g")
+                    .attr("transform", function(d) {
+                      return "rotate(" + ( xRadial(d.x0) * 180 / Math.PI ) + ")translate(0," + (-innerRadius) + ")"
+                    })
+
+                          labels.append("line")
+          .attr("y2", '20')
+          .attr("y1", '17')
+          .attr("stroke", "rgba(255,255,255)")
+  
     labels.append("line")
-        .attr("y2", '20')
-        .attr("y1", '17')
-        .attr("stroke", "rgba(255,255,255)")
-
-    labels.append("line")
-        .attr("y2", '10')
-        .attr("y1", '-100')
-        .attr("stroke", "rgba(255,255,255,.2)")
-
-
+          .attr("y2", '10')
+          .attr("y1", '-100')
+          .attr("stroke", "rgba(255,255,255,.2)")
+  
+  
     labels.append("text")
           .attr("transform", function(d) {
             return (xRadial(d.x0) + xRadial.bandwidth() / 2 + Math.PI / 2) % (2 * Math.PI) > Math.PI ? `rotate(180)translate(0,-${innerRadius/4})` : `rotate(0)translate(0,${innerRadius/4+8})`
@@ -188,102 +226,128 @@ module.exports = function (vm) {
           .attr("text-anchor", "middle")
           .attr('font-size','10px')
           .attr("font-weight", "100")
+          
+    labels.append("line")
+          .attr("y2", '20')
+          .attr("y1", '17')
+          .attr("stroke", "rgba(255,255,255)")
+  
+    labels.append("line")
+          .attr("y2", '10')
+          .attr("y1", '-100')
+          .attr("stroke", "rgba(255,255,255,.2)")
+  
+  
+      labels.append("text")
+            .attr("transform", function(d) {
+              return (xRadial(d.x0) + xRadial.bandwidth() / 2 + Math.PI / 2) % (2 * Math.PI) > Math.PI ? `rotate(180)translate(0,-${innerRadius/4})` : `rotate(0)translate(0,${innerRadius/4+8})`
+            })
+            .text(function(d) {
+                // var xlabel = (((d.km % 5) == 0) | (d.km == '1')) ? d.km : '';
+                // console.log(d)\
+                let time
+                if(d.x0 ==='1930'||d.x0 ==='2002'){
+                  return d.x0
+                } else {
+                  return d.x0.slice(2,4)
+                }
+            })
+            .attr('fill', 'rgba(255,255,255,.7)')
+            .attr("text-anchor", "middle")
+            .attr('font-size','10px')
+            .attr("font-weight", "100")
+
+    // ========================================================================
 
 
-    let graphs = graphGroups.append('g')
-                      .attr('class',function(d){
-                        // console.log(d)
-                        return d['key']
-                      })
-                    .selectAll('.gBin')
-                    .data(function(d){
-                      let histogram = d3.histogram()
-                                        .value(function(d) { return d['year'] })
-                                        .thresholds(x.domain())
-                      return histogram(d.values)
-                    })
-                    .enter()
-                    .append("g")
-                    .attr("class", "gBin")
-                    .attr("transform", function(d) {
-                      return "rotate(" + ( xRadial(d.x0) * 180 / Math.PI ) + ")translate(0," + (-innerRadius) + ")"
-                    })
-                    .attr("transform-origin", "0 0")
-
+// <<<<<<< HEAD
     // console.log(d3_save_svg)
 
-    graphs.selectAll("g")
-          .data(function(d){
-            return d.map(function(p,i){
-                        p.index = i
-                        return p
-                      })
-                      .sort(function(d){ return d['Datetime'] })
-          })
-          .enter()
-          .append('g')
-          .attr('transform',function(d){
-            // console.log(d)
-            return `translate(0, ${-d.index*16} )`
-          })
-          .selectAll('circle')
-          .data(function(d){
-            console.log(d)
-            let array = []
-            for (let i = 0; i <= d['Goals']; i++) {
-              array.push({
-                index : i,
-                country : d['country'],
-                Opponent_Goals : d['Opponent_Goals'],
-                Goals : d['Goals']
-              })
-            }
-            // console.log(array)
-            return array
-          })
-          .enter()
-          .append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', function(d){
-              if(d.index === 0){
-                return 2
-              }else{
-                return ( d.index ) * 3
-              }
-            })
-            .attr('fill',function(d){
-              if(d.index === 0){
-                // if (d.Goals < d.Opponent_Goals) {
-                //   return 'red'
-                // }else if(d.Goals === d.Opponent_Goals){
-                //   return 'yellow'
-                // }else{
-                //   return 'royalBlue'
-                // }
-                return 'rgba(255,255,255,.6)'
-              }else{
-                return 'none'
-              }
-            })
-            .attr('stroke', function(d){
-              // console.log(d)
-              if(d.index === 0){
-                return 'none'
-              }else{
+//     graphs.selectAll("g")
+//           .data(function(d){
+//             return d.map(function(p,i){
+//                         p.index = i
+//                         return p
+//                       })
+//                       .sort(function(d){ return d['Datetime'] })
+//           })
+//           .enter()
+//           .append('g')
+//           .attr('transform',function(d){
+//             // console.log(d)
+//             return `translate(0, ${-d.index*16} )`
+//           })
+//           .selectAll('circle')
+//           .data(function(d){
+//             console.log(d)
+//             let array = []
+//             for (let i = 0; i <= d['Goals']; i++) {
+//               array.push({
+//                 index : i,
+//                 country : d['country'],
+//                 Opponent_Goals : d['Opponent_Goals'],
+//                 Goals : d['Goals']
+//               })
+//             }
+//             // console.log(array)
+//             return array
+//           })
+//           .enter()
+//           .append('circle')
+//             .attr('cx', 0)
+//             .attr('cy', 0)
+//             .attr('r', function(d){
+//               if(d.index === 0){
+//                 return 2
+//               }else{
+//                 return ( d.index ) * 3
+//               }
+//             })
+//             .attr('fill',function(d){
+//               if(d.index === 0){
+//                 // if (d.Goals < d.Opponent_Goals) {
+//                 //   return 'red'
+//                 // }else if(d.Goals === d.Opponent_Goals){
+//                 //   return 'yellow'
+//                 // }else{
+//                 //   return 'royalBlue'
+//                 // }
+//                 return 'rgba(255,255,255,.6)'
+//               }else{
+//                 return 'none'
+//               }
+//             })
+//             .attr('stroke', function(d){
+//               // console.log(d)
+//               if(d.index === 0){
+//                 return 'none'
+//               }else{
 
-                // return color(d.Goals - d.Opponent_Goals)
-                // if (d.Goals > d.Opponent_Goals) {
-                //   return 'royalBlue'
-                // }else if(d.Goals === d.Opponent_Goals){
-                //   return '#573CAD'
-                // }else{
-                //   return '#4B53C4'
-                // }
-                return 'white'
-              }
-            })
-            .attr('stroke-width','.6')
+//                 // return color(d.Goals - d.Opponent_Goals)
+//                 // if (d.Goals > d.Opponent_Goals) {
+//                 //   return 'royalBlue'
+//                 // }else if(d.Goals === d.Opponent_Goals){
+//                 //   return '#573CAD'
+//                 // }else{
+//                 //   return '#4B53C4'
+//                 // }
+//                 return 'white'
+//               }
+//             })
+//             .attr('stroke-width','.6')
+// =======
+    updatePattern(nations[0], nestData);
+    updateStars(nations[0], nestDataByYearObject);
+
+    d3.select("#nation-menu").on("change", function() {
+      let nation = d3.select("#nation-menu")
+        .property("value");
+        
+      updatePattern(nation, nestData);
+      updateStars(nation, nestDataByYearObject);
+    });
+
+// >>>>>>> refs/remotes/origin/master
   })
 
   function flattenData (data) {
@@ -319,18 +383,161 @@ module.exports = function (vm) {
     return newData
   }
 
-  d3.select(vm.$refs.chartArea)
-  .append('div')
-  .attr('class','tr')
-  .append('button')
-  .text('export')
-  .attr('class',"f6 link dim br2 ph4 pv3 ma4 dib white bg-blue pointer")
-  .on('click', function() {
-    var config = {
-      filename: 'World_Cup',
-    }
-    d3_save_svg.save(d3.select('svg').node(), config);
-  });
+// <<<<<<< HEAD
+//   d3.select(vm.$refs.chartArea)
+//   .append('div')
+//   .attr('class','tr')
+//   .append('button')
+//   .text('export')
+//   .attr('class',"f6 link dim br2 ph4 pv3 ma4 dib white bg-blue pointer")
+//   .on('click', function() {
+//     var config = {
+//       filename: 'World_Cup',
+//     }
+//     d3_save_svg.save(d3.select('svg').node(), config);
+//   });
+// =======
+  function updatePattern(nation, nestData) {
+    let data = nestData.find(function(d){
+      return d.key == nation;
+    });
+
+    let histogram = d3.histogram()
+                      .value(function(d) { return d['year'] })
+                      .thresholds(x.domain())
+
+    let bins = histogram(data.values)
+
+    // console.log(data)
+
+    let name = g.selectAll('.name')
+              .data([data])
+
+    name.enter()
+        .append('text')
+        .attr('class', 'name')
+        .merge(name)
+        .text(function(d){
+          return d.key
+        })
+        .attr("font-family", "sans-serif")
+        .attr("text-anchor", "middle")
+        .attr('y', 0)
+        .attr('fill', 'white')
+        .attr('font-size','12px')
+
+
+    let redirection = g.selectAll('.gBin')
+                        .data(bins);
+
+    redirection.exit().attr('opacity', 1).transition(4000).attr('opacity', 0).remove();
+                    
+    let redirection_update = redirection.enter()
+                                        .append('g')
+                                        .attr("class", "gBin")
+                                        .merge(redirection)
+                                        .attr("transform", function(d) {
+                                          return "rotate(" + ( xRadial(d.x0) * 180 / Math.PI ) + ")translate(0," + (-innerRadius) + ")"
+                                        })
+                                        .attr("transform-origin", "0 0")
+
+    let pattern = redirection_update.selectAll("g")
+                              .data(function(d){
+                                return d.map(function(p,i){
+                                            p.index = i
+                                            return p
+                                          })
+                                          .sort(function(d){ return d['Datetime'] })
+                              })
+
+    pattern.exit().attr('opacity', 1).transition(4000).attr('opacity', 0).remove();
+
+    let pattern_update = pattern.enter()
+                              .append('g')
+                              .merge(pattern)
+                              .attr('transform',function(d){
+                                // console.log(d)
+                                return `translate(0, ${-d.index*16} )`
+                              })
+
+    let circles = pattern_update.selectAll('circle')
+                              .data(function(d){
+                                // console.log(d)
+                                let array = []
+                                for (let i = 0; i <= d['Goals']; i++) {
+                                  array.push({
+                                    index : i,
+                                    country : d['country']
+                                  })
+                                }
+                                // console.log(array)
+                                return array
+                              })
+
+    let circles_t = circles.transition().duration(4000);
+
+    circles.exit().transition(circles_t).attr('r', 0).remove();
+
+    let circles_update = circles.enter()
+                              .append('circle')
+                              .merge(circles)
+                              .transition(circles_t)
+                              .attr('cx', 0)
+                              .attr('cy', 0)
+                              .attr('r', function(d){
+                                if(d.index === 0){
+                                  return 2
+                                }else{
+                                  return ( d.index ) * 3
+                                }
+                              })
+                              .attr('fill',function(d){
+                                if(d.index === 0){
+                                  return 'rgba(255,255,255,.6)'
+                                }else{
+                                  return 'none'
+                                }
+                              })
+                              .attr('stroke', function(d){
+                                if(d.index === 0){
+                                  return 'none'
+                                }else{
+                                  return 'white'
+                                }
+                              })
+                              .attr('stroke-width','.8')
+
+  }
+
+  function updateStars(nation, nestDataByYearObject) {
+
+    // console.log(nestDataByYearObject[nation])
+
+    g.selectAll(".star").remove();
+
+    let stars = g.selectAll(".star")
+                  .data(nestDataByYearObject[nation])
+                  .enter()
+                  .append('g')
+                  .attr('class', 'star')
+                  .attr("transform", function(d) {
+                    return "rotate(" + ( xRadial(d.key) * 180 / Math.PI ) + ")translate(0," + (-outterRadius) + ")"
+                  })
+                  .append('path')
+                  .attr('fill',function(d){
+                    if(d.value){
+                      return 'rgba(255,255,0,1)'
+                    }else{
+                      return 'rgba(255,255,255,0)'
+                    }
+                  })
+                  .attr('d', d3.symbol()
+                              .size(80)
+                              .type(d3.symbols[4])
+                  )
+  }
+
+// >>>>>>> refs/remotes/origin/master
 
   vm.$refs.notes.innerHTML = `
   <p>可以使用<pre>
@@ -356,5 +563,22 @@ module.exports = function (vm) {
   </pre></p>
   <p>这样循环的方式去触及每个数据的枝叶部分</p>
   <p>d3.symbol()  d3.symbols</p>
+  </br>
+  <p>数据切换：</p>
+  <p><pre>
+let redirection = g.selectAll('.gBin')
+  <span class="orange">.data(bins)</span>;
+
+<span class="orange">redirection.exit().remove()</span>;
+
+let redirection_update = redirection.enter()
+                  .append('g')
+                  .attr("class", "gBin")
+                  <span class="orange">.merge(redirection)</span>
+                  .attr("transform", function(d) {
+                    return "rotate(" + ( xRadial(d.x0) * 180 / Math.PI ) + ")translate(0," + (-innerRadius) + ")"
+                  })
+                  .attr("transform-origin", "0 0")
+                  </pre><p>
   `
 }

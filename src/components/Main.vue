@@ -1,7 +1,10 @@
 <template>
-  <section class="mw7 center">
-    <h2 class="fw4 f2 ph3 ph0-l">Learning D3</h2>
-    <appListItem v-for="(item, index) of d3_list" :key="index" :linkto="item.link" :title="item.name" :imgUrl="item.img"  :tags="item.tags"/>
+  <section class="mw8 center">
+    <div class="flex flex-wrap mt4">
+      <div class="w-100 w-25-ns pa3" v-for="(item, index) of d3_list" :key="index">
+        <appListItem :linkto="item.link" :title="item.name" :imgUrl="item.img"  :tags="item.tags"/>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -96,6 +99,18 @@ export default {
           link: '/d3/Radial_Column_Chart',
           img: require('../../src/assets/thumbnail/Radial_Column_Chart.png'),
           // tags: ['d3.bisector(comparator)']
+        },
+        { 
+          name:'World Cup 2',
+          link: '/d3/World_Cup_2',
+          img: require('../../src/assets/thumbnail/World_Cup_2.png'),
+          // tags: ['d3.forceSimulation()', 'd3.on("tick",()=>{})']
+        },
+        { 
+          name:'World Cup All',
+          link: '/d3/World_Cup_2_1',
+          img: require('../../src/assets/thumbnail/World_Cup_2.png'),
+          // tags: ['d3.forceSimulation()', 'd3.on("tick",()=>{})']
         },
         { 
           name:'Dot Plot Histogram',
