@@ -88,23 +88,17 @@ export default {
           img: require('../../src/assets/thumbnail/YouTube_Ratings.png'),
           // tags: ['d3.bisector(comparator)']
         },
-        {
-          name:'Add Data to Force Layout',
-          link: '/d3/Add_Data_to_Force_Layout',
-          img: require('../../src/assets/thumbnail/default.png'),
-          // tags: ['d3.bisector(comparator)']
-        },
+        // {
+        //   name:'Add Data to Force Layout',
+        //   link: '/d3/Add_Data_to_Force_Layout',
+        //   img: require('../../src/assets/thumbnail/default.png'),
+        //   // tags: ['d3.bisector(comparator)']
+        // },
         { 
           name:'Radial Column Chart',
           link: '/d3/Radial_Column_Chart',
           img: require('../../src/assets/thumbnail/Radial_Column_Chart.png'),
           // tags: ['d3.bisector(comparator)']
-        },
-        { 
-          name:'World Cup 2',
-          link: '/d3/World_Cup_2',
-          img: require('../../src/assets/thumbnail/World_Cup_2.png'),
-          // tags: ['d3.forceSimulation()', 'd3.on("tick",()=>{})']
         },
         { 
           name:'World Cup All',
@@ -137,11 +131,17 @@ export default {
           tags: ['d3.stratify()', 'd3.cluster()']
         },
         { 
-          name:'Zoomable Circle Packing',
-          link: '/d3/Zoomable_Circle_Packing',
+          name:'Color Analysis',
+          link: '/coloranalysis',
           img: require('../../src/assets/thumbnail/default.png'),
           // tags: ['d3.stratify()', 'd3.cluster()']
         },
+        // { 
+        //   name:'Zoomable Circle Packing',
+        //   link: '/d3/Zoomable_Circle_Packing',
+        //   img: require('../../src/assets/thumbnail/default.png'),
+        //   // tags: ['d3.stratify()', 'd3.cluster()']
+        // },
       ]
     }
   },

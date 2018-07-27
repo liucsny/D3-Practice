@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <div class="mw8 center">
       <div class="w-100 pa2 mt2 tc" ref="chartArea"></div>
       <h2 class="fw4">{{this.$route.params.id +'.js'}}</h2>
