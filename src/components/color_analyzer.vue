@@ -7,7 +7,7 @@
           <div class="pv2 ph3">
             <div class="w-100 flex input-box">
               <p>#</p>
-              <input class="w-100" type="text" @change="update_chart" v-model="data[i-1]">
+              <input class="w-100" type="text" @change="update_chart" @focus="$event.target.select()" v-model="data[i-1]">
             </div>
           </div>
         </div>
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import * as d3 from 'd3';
+
 export default {
   data() {
     return {
@@ -157,12 +159,19 @@ export default {
                   .attr('cx', function(d) { return saturationScale(hex_to_hsv(d).s); })
                   .attr('cy', function(d) { return brightnessScale(hex_to_hsv(d).v); })
                   .attr('r', 10)
+                  .style('cursor', 'move')
                   .attr('fill', function(d){
                     return '#' + d
                   })
-
-
-
+                  // .on('drag', function(){
+                  //   console.log(this)
+                  // })
+                  .call(d3.drag().on('drag', function(){
+                    // console.log(this)
+                    d3.select(this)
+                      .attr("cx", d3.event.x)
+                      .attr("cy", d3.event.y)
+                  }))
 
       let gradient = this.canvas.append("svg:defs")
                                 .append("svg:linearGradient")

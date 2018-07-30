@@ -133,7 +133,7 @@ export default {
         { 
           name:'Color Analysis',
           link: '/coloranalysis',
-          img: require('../../src/assets/thumbnail/default.png'),
+          img: require('../../src/assets/thumbnail/Color_Analysis.png'),
           // tags: ['d3.stratify()', 'd3.cluster()']
         },
         // { 
