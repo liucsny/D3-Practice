@@ -13,6 +13,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "colorsys": "^1.0.21",
     "d3": "^5.4.0",
     "d3-save-svg": "0.0.2",
     "vue": "^2.5.2",
