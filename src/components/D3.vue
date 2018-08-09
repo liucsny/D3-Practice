@@ -12,7 +12,12 @@
 export default {
   data () {
     return {
-      render: require('./d3_file/'+ this.$route.params.id +'.js')
+      // render: require('./d3_file/'+ this.$route.params.id +'.js')
+    }
+  },
+  computed: {
+    render() {
+      return require('./d3_file/'+ this.$route.params.id +'.js')
     }
   },
   mounted () {

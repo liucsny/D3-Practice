@@ -1,13 +1,23 @@
 <template>
   <div>
-    <div id='chart'></div>
+    <div id='chart'>
+       <div class="flex mb4 mt5">
+        <div class="color_box ma2" v-for="(i, index) in 8" :key="index">
+          <div class="w-100 h4" :style='{"background-color":color_dots[i-1].color}'></div>
+          <div class="pv2 ph3">
+            <div class="w-100 flex input-box">
+              <input class="w-100" type="text" @change="update_plot" @focus="$event.target.select()" v-model="color_dots[i-1].color">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import * as d3 from 'd3';
-
-import colorsys from 'colorsys'
+import colorsys from 'colorsys';
 
 export default {
   data() {
@@ -18,11 +28,13 @@ export default {
         height: 700,
         innerWidth: null,
         innerHeight: null,
-        margin: {top: 20, right: 20, bottom: 30, left: 20},
+        margin: {top: 20, right: 20, bottom: 30, left: 40},
         scales: {},
         rects:{
           body: null,
-          width: 200
+          width: 120,
+          height: null,
+          marginBottom: 6
         },
         plot: {
           body: null,
@@ -100,6 +112,27 @@ export default {
     }
   },
   methods: {
+    noemalize_hex(hex){
+      let num;
+
+      if(hex[0]=='#'){
+        num = hex.substr(1);
+      }else{
+        num = hex
+      }
+
+      if(num.length == 3){
+        num = num.split('').map(function(d){
+                    return d + d;
+                  }).join('')
+      }else if( num.length > 6 ){
+        num = num.substring(0,6);
+      }else if( num.length < 6 ){
+        num = (num + 'ffffff').substring(0,6);
+      }
+
+      return '#' + num;
+    },
     limite(val, max, min){
       if( val > max){
         return max
@@ -120,7 +153,7 @@ export default {
       chart.scales.saturationScale = d3.scaleLinear().domain([0, 100]).range([0, chart.plot.width]);
       chart.scales.brightnessScale = d3.scaleLinear().domain([0, 100]).range([chart.plot.height, 0]);
 
-      canvas = d3.select('#chart')
+      this.chart.canvas = d3.select('#chart')
                   .append('svg')
                   .attr('width', chart.width)
                   .attr('height', chart.height)
@@ -128,9 +161,9 @@ export default {
                   .attr("transform", "translate(" + chart.margin.left + "," + chart.margin.top + ")");
       
       // Draw Plot Frame ========
-      chart.plot.body = canvas.append('g')
+      chart.plot.body = this.chart.canvas.append('g')
                               .attr('class', 'plot')
-                              .attr("transform", "translate(" + chart.rects.width + ", 0)");
+                              .attr("transform", "translate(" + (chart.rects.width + 40) + ", 0)");
 
       chart.plot.body.append('g')
                       .call(d3.axisLeft(chart.scales.brightnessScale)
@@ -173,13 +206,11 @@ export default {
           d.pos.h = colorsys.hex_to_hsv(d.color).h;
         })
 
-        
-
         // ==============
         
         // Draw Dots ====
         let deltaX, deltaY;
-        chart.dots = chart.plot.body.selectAll('.dot')
+        chart.plot.dots = chart.plot.body.selectAll('.dot')
                                     .data(color_dots)
                                     .enter()
                                     .append('circle')
@@ -209,16 +240,62 @@ export default {
                                       current.attr('cx', d.pos.x)
                                               .attr('cy', d.pos.y)
                                               .attr('fill', d.color)
-
-                                      // console.log(color)
-                                      // console.log(s,'  ',v)
-                                      // console.log(x,'  ',y)
-                                      // console.log(colorsys)
                                     }))
+        // ===============
+
+        // Draw Rects ====
+        this.chart.rects.height = this.chart.innerHeight/this.color_dots.length - this.chart.rects.marginBottom;
+        let rects_height = this.chart.rects.height;
+
+        chart.rects.body = this.chart.canvas.append('g')
+                                            .attr('class', 'rectsGroup')
+                                            .selectAll('.rect')
+                                            .data(color_dots)
+                                            .enter()
+                                            .append('rect')
+                                            .attr('class', 'rect')
+                                            .attr('width', this.chart.rects.width)
+                                            .attr('height', this.chart.rects.height)
+                                            .attr('x', 0)
+                                            .attr('y', function(d ,i){
+                                              return i * rects_height;
+                                            })
+                                            .attr(':fill', function(d){
+                                              return d.color
+                                            })
+// {"background-color":color_dots[i-1].color}
+
+    },
+    update_plot(){
+      let noemalize_hex = this.noemalize_hex
+      let chart = this.chart;
+
+      this.color_dots.forEach(function(d){
+        // console.log(noemalize_hex(d.color));
+        d.pos.x = chart.scales.saturationScale(colorsys.hex_to_hsv(noemalize_hex(d.color)).s);
+        d.pos.y = chart.scales.brightnessScale(colorsys.hex_to_hsv(noemalize_hex(d.color)).v);
+        d.pos.h = colorsys.hex_to_hsv(noemalize_hex(d.color)).h;
+      })
 
 
+      let dots = this.chart.plot.dots.data(this.color_dots);
+      dots.exit().remove();
+
+      // console.log(dots)
+
+      this.chart.plot.dots = this.chart.plot.dots.enter()
+                                                .append('circle')
+                                                .attr('class', 'dot')
+                                                .merge(dots)
+                                                .attr('cx', function(d) { return d.pos.x; })
+                                                .attr('cy', function(d) { return d.pos.y })
+                                                .attr('r', 10)
+                                                .attr('fill', function(d){
+                                                  return d.color
+                                                });
 
 
+      // console.log(this.chart.plot.dots)
 
     }
   },
@@ -228,6 +305,23 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+ #chart{
+  line-height: 0;
+  color: #374047;
+}
 
+#chart input{
+  border: none;
+  padding-left: 0.125rem;
+  color: #374047;
+}
+#chart input:focus{
+  outline: none;
+}
+.color_box{
+  border: 1px solid #ddd;
+  border-radius: 0.125rem;
+  box-shadow:0 2px 8px 0 rgba(218, 218, 223, 0.5 );
+} 
 </style>

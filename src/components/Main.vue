@@ -136,12 +136,12 @@ export default {
           img: require('../../src/assets/thumbnail/Color_Analysis.png'),
           // tags: ['d3.stratify()', 'd3.cluster()']
         },
-        // { 
-        //   name:'Zoomable Circle Packing',
-        //   link: '/d3/Zoomable_Circle_Packing',
-        //   img: require('../../src/assets/thumbnail/default.png'),
-        //   // tags: ['d3.stratify()', 'd3.cluster()']
-        // },
+        { 
+          name:'D3 + Vue',
+          link: '/d3_vue',
+          img: require('../../src/assets/thumbnail/default.png'),
+          // tags: ['d3.stratify()', 'd3.cluster()']
+        },
       ]
     }
   },
