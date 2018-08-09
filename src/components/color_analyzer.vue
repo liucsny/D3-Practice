@@ -6,7 +6,7 @@
           <div class="w-100 h4" :style='{"background-color":color_dots[i-1].color}'></div>
           <div class="pv2 ph3">
             <div class="w-100 flex input-box">
-              <input class="w-100" type="text" @change="update_plot" @focus="$event.target.select()" v-model="color_dots[i-1].color">
+              <input class="w-100" type="text" @change="update_plot_by_hex();update_rects();update_ruler()" @focus="$event.target.select()" v-model="color_dots[i-1].color">
             </div>
           </div>
         </div>
@@ -42,12 +42,18 @@ export default {
           width: 600,
           height: 600,
         },
-        ruler: {}
+        ruler: {
+          gradient: null,
+          body: null,
+          dots: null,
+          width: 120
+        }
       },
       color_dots: [
         {
           pos:{
             h: null,
+            s: null,
             x: null,
             y: null
           },
@@ -56,6 +62,7 @@ export default {
         {
           pos:{
             h: null,
+            s: null,
             x: null,
             y: null
           },
@@ -64,6 +71,7 @@ export default {
         {
           pos:{
             h: null,
+            s: null,
             x: null,
             y: null
           },
@@ -72,6 +80,7 @@ export default {
         {
           pos:{
             h: null,
+            s: null,
             x: null,
             y: null
           },
@@ -80,6 +89,7 @@ export default {
         {
           pos:{
             h: null,
+            s: null,
             x: null,
             y: null
           },
@@ -88,6 +98,7 @@ export default {
         {
           pos:{
             h: null,
+            s: null,
             x: null,
             y: null
           },
@@ -96,6 +107,7 @@ export default {
         {
           pos:{
             h: null,
+            s: null,
             x: null,
             y: null
           },
@@ -104,6 +116,7 @@ export default {
         {
           pos:{
             h: null,
+            s: null,
             x: null,
             y: null
           },
@@ -111,8 +124,16 @@ export default {
         }]
     }
   },
+  computed: {
+    sorted_color_dots() {
+      let that = this;
+      return this.color_dots.slice(0).sort(function(a, b){
+              return colorsys.hex_to_hsv(that.normalize_hex(b.color)).v - colorsys.hex_to_hsv(that.normalize_hex(a.color)).v;
+            })
+    }
+  },
   methods: {
-    noemalize_hex(hex){
+    normalize_hex(hex) {
       let num;
 
       if(hex[0]=='#'){
@@ -178,7 +199,6 @@ export default {
                       .text('Brightness')
                       .attr('fill', 'black')
 
-
       chart.plot.body.append("g")
                       .call(d3.axisBottom(chart.scales.saturationScale)
                               .tickSize( -chart.plot.height))
@@ -193,89 +213,185 @@ export default {
                       .text('Saturation')
                       .attr('fill', 'black')
 
-        chart.plot.body.selectAll('.axis line,path ').style('stroke', '#ddd')
-        // =============
+      chart.plot.body.selectAll('.axis line,path ').style('stroke', '#ddd')
+      // =============
 
-        // Convert Hex Color to Position
+      // Convert Hex Color to Position
 
-        let color_dots = this.color_dots
+      let color_dots = this.color_dots;
+      let sorted_color_dots = this.sorted_color_dots;
 
-        this.color_dots.forEach(function(d){
-          d.pos.x = chart.scales.saturationScale(colorsys.hex_to_hsv(d.color).s);
-          d.pos.y = chart.scales.brightnessScale(colorsys.hex_to_hsv(d.color).v);
-          d.pos.h = colorsys.hex_to_hsv(d.color).h;
-        })
+      this.color_dots.forEach(function(d){
+        d.pos.x = chart.scales.saturationScale(colorsys.hex_to_hsv(d.color).s);
+        d.pos.y = chart.scales.brightnessScale(colorsys.hex_to_hsv(d.color).v);
+        d.pos.h = colorsys.hex_to_hsv(d.color).h;
+        d.pos.s = colorsys.hex_to_hsv(d.color).s;
+      })
 
-        // ==============
-        
-        // Draw Dots ====
-        let deltaX, deltaY;
-        chart.plot.dots = chart.plot.body.selectAll('.dot')
-                                    .data(color_dots)
-                                    .enter()
-                                    .append('circle')
-                                    .attr('class', 'dot')
-                                    .attr('cx', function(d) { return d.pos.x })
-                                    .attr('cy', function(d) { return d.pos.y })
-                                    .attr('r', 10)
-                                    .style('cursor', 'move')
-                                    .attr('fill', function(d){
-                                      return d.color
-                                    })
-                                    .call(d3.drag().on('start', function(){
-                                      let current = d3.select(this);
-                                      deltaX = current.attr("cx") - d3.event.x;
-                                      deltaY = current.attr("cy") - d3.event.y;
-                                    })
-                                      .on('drag', function(d,i){
-                                      let current = d3.select(this);
+      // ==============
+      
+      // Draw Dots ====
+      let deltaX, deltaY;
+      chart.plot.dots = chart.plot.body.selectAll('.dot')
+                                  .data(color_dots)
+                                  .enter()
+                                  .append('circle')
+                                  .attr('class', 'dot')
+                                  .attr('cx', function(d) { return d.pos.x })
+                                  .attr('cy', function(d) { return d.pos.y })
+                                  .attr('r', 10)
+                                  .style('cursor', 'move')
+                                  .attr('fill', function(d){
+                                    return d.color
+                                  })
+                                  .call(d3.drag().on('start', function(){
+                                    let current = d3.select(this);
+                                    deltaX = current.attr("cx") - d3.event.x;
+                                    deltaY = current.attr("cy") - d3.event.y;
+                                  })
+                                    .on('drag', function(d){
+                                    let current = d3.select(this);
 
-                                      let s = that.limite(chart.scales.saturationScale.invert(d.pos.x), 100, 0);
-                                      let v = that.limite(chart.scales.brightnessScale.invert(d.pos.y), 100, 0);
+                                    let s = that.limite(chart.scales.saturationScale.invert(d.pos.x), 100, 0);
+                                    let v = that.limite(chart.scales.brightnessScale.invert(d.pos.y), 100, 0);
+                                  
+                                    d.pos.x = that.limite(d3.event.x + deltaX, chart.scales.saturationScale(100),chart.scales.saturationScale(0));
+                                    d.pos.y = that.limite(d3.event.y + deltaY, chart.scales.brightnessScale(0),chart.scales.brightnessScale(100));
+                                    d.color = colorsys.hsv_to_hex(d.pos.h, s, v);
                                     
-                                      d.pos.x = that.limite(d3.event.x + deltaX, chart.scales.saturationScale(100),chart.scales.saturationScale(0));
-                                      d.pos.y = that.limite(d3.event.y + deltaY, chart.scales.brightnessScale(0),chart.scales.brightnessScale(100));
-                                      d.color = colorsys.hsv_to_hex(d.pos.h, s, v);
+                                    current.attr('cx', d.pos.x)
+                                            .attr('cy', d.pos.y)
+                                            .attr('fill', d.color);
 
-                                      current.attr('cx', d.pos.x)
-                                              .attr('cy', d.pos.y)
-                                              .attr('fill', d.color)
-                                    }))
-        // ===============
+                                    that.update_rects();
+                                    that.update_ruler();
+                                  }))
+      // ===============
 
-        // Draw Rects ====
-        this.chart.rects.height = this.chart.innerHeight/this.color_dots.length - this.chart.rects.marginBottom;
-        let rects_height = this.chart.rects.height;
+      // Draw Rects ====
+      this.chart.rects.height = this.chart.plot.height/this.color_dots.length;
+      let rects_height = this.chart.rects.height;
 
-        chart.rects.body = this.chart.canvas.append('g')
-                                            .attr('class', 'rectsGroup')
-                                            .selectAll('.rect')
-                                            .data(color_dots)
-                                            .enter()
-                                            .append('rect')
-                                            .attr('class', 'rect')
-                                            .attr('width', this.chart.rects.width)
-                                            .attr('height', this.chart.rects.height)
-                                            .attr('x', 0)
-                                            .attr('y', function(d ,i){
-                                              return i * rects_height;
-                                            })
-                                            .attr(':fill', function(d){
-                                              return d.color
-                                            })
-// {"background-color":color_dots[i-1].color}
+      chart.rects.body = this.chart.canvas.append('g')
+                                          .attr('class', 'rectsGroup')
+                                          .selectAll('.rect')
+                                          .data(sorted_color_dots)
+                                          .enter()
+                                          .append('rect')
+                                          .attr('class', 'rect')
+                                          .attr('width', this.chart.rects.width)
+                                          .attr('height', this.chart.rects.height)
+                                          .attr('x', 0)
+                                          .attr('y', function(d ,i){
+                                            return i * rects_height;
+                                          })
+                                          .attr('fill', function(d){
+                                            return d.color
+                                          })
 
+
+      // Draw Ruler ======
+
+      this.chart.ruler.gradient = this.chart.canvas.append("svg:defs")
+                                                  .append("svg:linearGradient")
+                                                  .attr("id", "gradient")
+                                                  .attr("x1", "50%")
+                                                  .attr("y1", "0%")
+                                                  .attr("x2", "50%")
+                                                  .attr("y2", "100%")
+                                                  .attr("spreadMethod", "pad");
+
+      this.chart.ruler.gradient.append("svg:stop")
+                                .attr("offset", "0%")
+                                .attr("stop-color", "#fff")
+                                .attr("stop-opacity", 1);
+
+      this.chart.ruler.gradient.append("svg:stop")
+                                .attr("offset", "100%")
+                                .attr("stop-color", "#000")
+                                .attr("stop-opacity", 1);
+
+      this.chart.ruler.body = this.chart.canvas.append('g')
+                                                .attr('class','brightness_rect_group')
+                                                .attr('transform','translate(' + (this.chart.rects.width + this.chart.plot.width + 60) + ')')
+                                                
+
+      // Draw Ruler Dots======
+
+      this.chart.ruler.body.append('rect')
+                          .attr('class','brightness_rect')
+                          .attr('width', this.chart.ruler.width)
+                          .attr('height', this.chart.plot.height)
+                          .attr('fill', 'url(#gradient)')
+
+      this.chart.ruler.dots = this.chart.ruler.body.selectAll('.brightness_dots')   
+                                                    .data(this.color_dots)
+                                                    .enter()
+                                                    .append('circle')
+                                                    .attr('class', 'brightness_dots')
+                                                    .attr('r', 5)
+                                                    .attr('cx', this.chart.ruler.width/2)
+                                                    .attr('cy', function(d){
+                                                      return that.chart.scales.brightnessScale(colorsys.hex_to_hsv(that.normalize_hex(d.color)).v);
+                                                    })
+                                                    .attr('fill', '#fff')
+                                                    .attr('stroke', '#aaa')
+                                                    .style('cursor', 'move')
+                                                    .call(d3.drag().on('start',function(){
+
+                                                    }).on('drag',function(d){
+                                                      let current = d3.select(this);
+
+                                                      let v = that.limite(chart.scales.brightnessScale.invert(d.pos.y), 100, 0);
+                                                      d.pos.y = that.limite(d3.event.y, chart.scales.brightnessScale(0),chart.scales.brightnessScale(100));
+                                                      
+                                                      d.color = colorsys.hsv_to_hex(d.pos.h, d.pos.s, v);
+
+                                                      current.attr('cy', d.pos.y);
+
+                                                      that.update_rects();
+                                                      that.update_plot();
+                                                    }))
+      // ============
     },
-    update_plot(){
-      let noemalize_hex = this.noemalize_hex
+    update_plot_by_hex() {
+      let normalize_hex = this.normalize_hex
       let chart = this.chart;
 
       this.color_dots.forEach(function(d){
-        // console.log(noemalize_hex(d.color));
-        d.pos.x = chart.scales.saturationScale(colorsys.hex_to_hsv(noemalize_hex(d.color)).s);
-        d.pos.y = chart.scales.brightnessScale(colorsys.hex_to_hsv(noemalize_hex(d.color)).v);
-        d.pos.h = colorsys.hex_to_hsv(noemalize_hex(d.color)).h;
+        d.pos.x = chart.scales.saturationScale(colorsys.hex_to_hsv(normalize_hex(d.color)).s);
+        d.pos.y = chart.scales.brightnessScale(colorsys.hex_to_hsv(normalize_hex(d.color)).v);
+        d.pos.h = colorsys.hex_to_hsv(normalize_hex(d.color)).h;
+        d.pos.s = colorsys.hex_to_hsv(normalize_hex(d.color)).s;
       })
+
+
+      let dots = this.chart.plot.dots.data(this.color_dots);
+      dots.exit().remove();
+
+      // console.log(dots)
+
+      this.chart.plot.dots = this.chart.plot.dots.enter()
+                                                .append('circle')
+                                                .attr('class', 'dot')
+                                                .merge(dots)
+                                                .attr('cx', function(d) { return d.pos.x; })
+                                                .attr('cy', function(d) { return d.pos.y })
+                                                .attr('r', 10)
+                                                .attr('fill', function(d){
+                                                  return d.color
+                                                });
+    },
+    update_plot() {
+      let normalize_hex = this.normalize_hex
+      let chart = this.chart;
+
+      // this.color_dots.forEach(function(d){
+      //   d.pos.x = chart.scales.saturationScale(colorsys.hex_to_hsv(normalize_hex(d.color)).s);
+      //   d.pos.y = chart.scales.brightnessScale(colorsys.hex_to_hsv(normalize_hex(d.color)).v);
+      //   d.pos.h = colorsys.hex_to_hsv(normalize_hex(d.color)).h;
+      //   d.pos.s = colorsys.hex_to_hsv(normalize_hex(d.color)).s;
+      // })
 
 
       let dots = this.chart.plot.dots.data(this.color_dots);
@@ -296,6 +412,57 @@ export default {
 
 
       // console.log(this.chart.plot.dots)
+
+    },
+    update_rects(){
+      // console.log('update_rects')
+
+      let normalize_hex = this.normalize_hex;
+      let chart = this.chart;
+
+      let rects = this.chart.rects.body.data(this.sorted_color_dots);
+      // console.log(this.chart.rects.body)
+      // console.log(rects)
+      rects.exit().remove();
+
+      let rects_height = this.chart.rects.height;
+      this.chart.rects.body = this.chart.rects.body.enter()
+                                                    .append('rect')
+                                                    .attr('class', 'rect')
+                                                    .merge(rects)
+                                                    .attr('width', this.chart.rects.width)
+                                                    .attr('height', this.chart.rects.height)
+                                                    .attr('x', 0)
+                                                    .attr('y', function(d ,i){
+                                                      return i * rects_height;
+                                                    })
+                                                    .attr('fill', function(d){
+                                                      return d.color
+                                                    })
+
+    },
+    update_ruler() {
+      let that = this;
+      let normalize_hex = this.normalize_hex;
+
+      let brightness_dots = this.chart.ruler.dots.data(this.color_dots);
+      // let brightness_dots = d3.selectAll('brightness_dots').data(this.data);
+      // console.log(this.chart.ruler.dots)
+      // console.log(brightness_dots)
+      brightness_dots.exit().remove();
+
+      this.chart.ruler.dots = this.chart.ruler.dots.enter()
+                                                    .append('circle')
+                                                    .attr('class', 'brightness_dots')
+                                                    .merge(brightness_dots)
+                                                    .attr('r', 5)
+                                                    .attr('cx', this.chart.ruler.width/2)
+                                                    .attr('cy', function(d){
+                                                      return that.chart.scales.brightnessScale(colorsys.hex_to_hsv(that.normalize_hex(d.color)).v);
+                                                    })
+                                                    .attr('fill', '#fff')
+                                                    .attr('stroke', '#aaa')
+                                                    
 
     }
   },
