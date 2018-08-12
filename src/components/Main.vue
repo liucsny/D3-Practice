@@ -139,8 +139,20 @@ export default {
         { 
           name:'D3 + Vue',
           link: '/d3_vue',
-          img: require('../../src/assets/thumbnail/default.png'),
+          img: require('../../src/assets/thumbnail/D3_vue.png'),
           // tags: ['d3.stratify()', 'd3.cluster()']
+        },
+        {
+          name:'Radial Force',
+          link: '/d3/Radial_Force',
+          img: require('../../src/assets/thumbnail/Radial_Force.png'),
+          tags: ['d3.forceSimulation()', 'd3.forceX()', 'd3.forceManyBody()', 'Simulation.on("tick", function(){})']
+        },
+        {
+          name:'Force Directed Graph',
+          link: '/d3/Force_Directed_Graph',
+          img: require('../../src/assets/thumbnail/Force_Directed_Graph.png'),
+          tags: ['d3.event', 'd3.forceSimulation', 'Simulation.alpha()', 'Simulation.alphaTarget()', 'Simulation.tick()']
         },
       ]
     }

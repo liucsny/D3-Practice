@@ -76,7 +76,7 @@ export default {
       let that = this;
 
       if (this.root) {
-        console.log(this.root.descendants())
+        // console.log(this.root.descendants())
 
         let descendants = this.root.descendants().map(function(d) {
           return {
