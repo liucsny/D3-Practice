@@ -157,7 +157,7 @@ export default {
         {
           name:'Force Directed Graph 2',
           link: '/d3/Force_Directed_Graph_2',
-          img: require('../../src/assets/thumbnail/Force_Directed_Graph_1.png'),
+          img: require('../../src/assets/thumbnail/Force_Directed_Graph_2.png'),
           // tags: ['d3.event', 'd3.forceSimulation', 'Simulation.alpha()', 'Simulation.alphaTarget()', 'Simulation.tick()']
         },
       ]

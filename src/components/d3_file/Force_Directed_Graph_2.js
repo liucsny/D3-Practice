@@ -37,8 +37,10 @@ module.exports = function (vm) {
               .force("charge", d3.forceManyBody().strength(-100))
               .force('collid', d3.forceCollide().radius(5))
               .force("center", d3.forceCenter(0, 0))
+              // .force("X", d3.forceX(0))
+              // .force("Y", d3.forceY(0))
               .force("radial", d3.forceRadial().radius(function(d){
-                                                        return d.group > 5?80:300;
+                                                        return d.group > 5?60:200;
                                                         // return (d.group+1)*30
                                                       })
                                                       .strength(2)
@@ -172,6 +174,24 @@ module.exports = function (vm) {
     </pre>
     <p>效果是一样的</p>
     <p>Simulation.force('forceName') 似乎是把该力学模拟器中对应名称的力单独拉出来，然后可以进行修改设置。</p>
+    </br>
+    <p>d3.forceLink()创建一个连接力导。</p>
+    <p>Link.links(linksArray)将力导数据linksArray传入连接力导模拟器。linksArray是一个对象组成导Array，其中导每一个对象都需要有如下结构:
+    <pre>
+    {
+      source: property,
+      target: property
+    }</pre>
+    d3会根据顺序，自动添加一个index属性。</p>
+    <p>此时，linksArray 需要和前面的 nodesArray 对应起来。</p>
+    <p>这时需要调用
+    <pre>
+    Link.id(function(d) {
+      d.propertyName
+    })
+    </pre>
+    告诉d3，linksArray里的property对应的是nodeArray里的propertyName。
+    </p>
    `
   })
 
