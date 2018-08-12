@@ -48,6 +48,22 @@ module.exports = function (vm) {
                     .attr('fill', function(d){
                       return d.type === "a"?'blue':'red'
                     })
+                    .call(
+                      d3.drag().on('start', function start(d){
+                                  simulation.alphaTarget(.4).restart();
+                                  d.fx = d.x;
+                                  d.fy = d.y;
+                                })
+                                .on('drag', function drag(d){
+                                  d.fx = d3.event.x;
+                                  d.fy = d3.event.y;
+                                })
+                                .on('end', function end(d){
+                                  simulation.alphaTarget(0)
+                                  d.fx = null
+                                  d.fy = null;
+                                })
+                    )
 
 
   simulation.on('tick',function tick(){

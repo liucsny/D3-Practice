@@ -149,10 +149,16 @@ export default {
           tags: ['d3.forceSimulation()', 'd3.forceX()', 'd3.forceManyBody()', 'Simulation.on("tick", function(){})']
         },
         {
-          name:'Force Directed Graph',
-          link: '/d3/Force_Directed_Graph',
-          img: require('../../src/assets/thumbnail/Force_Directed_Graph.png'),
+          name:'Force Directed Graph 1',
+          link: '/d3/Force_Directed_Graph_1',
+          img: require('../../src/assets/thumbnail/Force_Directed_Graph_1.png'),
           tags: ['d3.event', 'd3.forceSimulation', 'Simulation.alpha()', 'Simulation.alphaTarget()', 'Simulation.tick()']
+        },
+        {
+          name:'Force Directed Graph 2',
+          link: '/d3/Force_Directed_Graph_2',
+          img: require('../../src/assets/thumbnail/Force_Directed_Graph_1.png'),
+          // tags: ['d3.event', 'd3.forceSimulation', 'Simulation.alpha()', 'Simulation.alphaTarget()', 'Simulation.tick()']
         },
       ]
     }

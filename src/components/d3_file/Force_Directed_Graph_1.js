@@ -111,7 +111,9 @@ module.exports = function (vm) {
     <p>调用Simulation.alphaMin()返回可以使当前力学模拟器停止的最小alpha（我称为停机最小值），默认是0.001；向simulation.alphaMin(min)里传递参数 min 表示当模拟器运行到 alpha == min 的时候模拟自动停止；</p>
     <p>调用Simulation.alphaDecay()返回当前力学模拟器alpha的衰减率，默认是 1 - 0.001^(1/300)；向simulation.alphaDecay(decay)里传递参数decay可以手动设置衰减率。当衰减率设置为0的时候，图像会永远运动下去。</p>
     <p>调用Simulation.alphaTarget()返回当前力学模拟器alpha的衰减的目标值，默认是0；向simulation.alphaTarget(target)里传递参数target可以手动设置衰减目标值。当目标值大于停机最小值的时候，图像会永远运动下去（永远不会停机）。</p>
-    <p>调用Simulation.tick()可以手动将力学模拟器向前运算一步。一般用于创建布局。由于一般的力导布局初始状态都是挤在一起的，这时如果想要把运行一段时间以后的力导图作为初始状态（这时图像不会挤在一起），就可以先用循环语句多调用.tick()几次。</p>`
+    <p>调用Simulation.tick()可以手动将力学模拟器向前运算一步。一般用于创建布局。由于一般的力导布局初始状态都是挤在一起的，这时如果想要把运行一段时间以后的力导图作为初始状态（这时图像不会挤在一起），就可以先用循环语句多调用.tick()几次。</p>
+    </br>
+    <p>d3.schemeCategory20已经在v5版本里被弃用了。详见：https://github.com/d3/d3/blob/master/CHANGES.md</p>`
   })
 
 }
