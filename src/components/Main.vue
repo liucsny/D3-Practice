@@ -47,7 +47,8 @@ export default {
         { 
           name:'Connected Particles (Canvas)',
           link: '/d3/Connected_Particles',
-          img: require('../../src/assets/thumbnail/Connected_Particles.png')
+          img: require('../../src/assets/thumbnail/Connected_Particles.png'),
+          tags: ['d3.timer(function(){ ... })']
         },
         { 
           name:'Scatter Plot with Zoom',
@@ -170,7 +171,13 @@ export default {
           name:'Dots Links',
           link: '/d3/Force_Directed_Graph_4',
           img: require('../../src/assets/thumbnail/dots_links.png'),
-          // tags: ['d3.forceLink()', 'Link.links()', 'Link.id()']
+          tags: ['dots = dots.data(dots_array)','dots.exit().remove()','dots = dots.enter()']
+        },
+        {
+          name:'Force Directed Lattice (Canvas)',
+          link: '/d3/Force_Directed_Lattice',
+          img: require('../../src/assets/thumbnail/Force_Directed_Lattice.png'),
+          tags: ['d3.drag().subject(function(){ ... })', 'simulation.find(function(){ ... })']
         },
       ]
     }

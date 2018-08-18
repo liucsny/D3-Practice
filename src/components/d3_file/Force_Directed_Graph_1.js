@@ -55,7 +55,11 @@ module.exports = function (vm) {
   
 
     dots.call(
-      d3.drag().on('start',function start(d) {
+      d3.drag().subject((d)=>{
+                  console.log(d);
+                  return d == null ? {x: d3.event.x, y: d3.event.y} : d;
+                })
+                .on('start',function start(d) {
                         //这里解释了为什么要判断一下 if (!d3.event.active)： https://stackoverflow.com/questions/42605261/d3-event-active-purpose-in-drag-dropping-circles
 
                         if (!d3.event.active){
@@ -69,7 +73,7 @@ module.exports = function (vm) {
                         d.fy = d.y;
                       })
                       .on('drag',function drag(d) {
-                        // console.log(d3.event.)
+                        console.log(d3.event)
                         d.fx = d3.event.x;
                         d.fy = d3.event.y;
                       })
