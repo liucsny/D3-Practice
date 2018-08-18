@@ -1,12 +1,12 @@
 <template>
   <div>
     <div id='chart'>
-       <div class="flex mb4 mt5">
+      <div class="flex mb4 mt5">
         <div class="color_box ma2" v-for="(i, index) in 8" :key="index">
-          <div class="w-100 h4" :style='{"background-color":color_dots[i-1].color}'></div>
+          <div class="w-100 h4" :style='{"background-color": color_dots[i-1].color}'></div>
           <div class="pv2 ph3">
             <div class="w-100 flex input-box">
-              <input class="w-100" type="text" @change="update_plot_by_hex();update_rects();update_ruler()" @focus="$event.target.select()" v-model="color_dots[i-1].color">
+              <input class="w-100" type="text" @change="update_plot_by_hex();update_rects();update_ruler()" @focus="$event.target.select()" v-model="color_dots_remove_hash[i-1].color">
             </div>
           </div>
         </div>
@@ -121,7 +121,25 @@ export default {
             y: null
           },
           color:'#1A1D2E'
-        }]
+        }
+      ],
+      get color_dots_remove_hash(){
+        return this.color_dots.slice(0).map(function(d){
+          return {
+            pos: d.pos,
+            color: d.color.replace('#','')
+          }
+        })
+      },
+      set color_dots_remove_hash(val){
+        console.log(val)
+        // return this.color_dots.slice(0).map(function(d){
+        //   return {
+        //     pos: d.pos,
+        //     color: d.color.replace('#','')
+        //   }
+        // })
+      }
     }
   },
   computed: {
@@ -164,6 +182,7 @@ export default {
       }
     },
     setup_chart(){
+
       let that = this;
       let chart = this.chart;
       let canvas = this.chart.canvas;

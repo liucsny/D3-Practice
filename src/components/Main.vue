@@ -103,7 +103,7 @@ export default {
         { 
           name:'World Cup All',
           link: '/d3/World_Cup_2_1',
-          img: require('../../src/assets/thumbnail/World_Cup_2.png'),
+          img: require('../../src/assets/thumbnail/World_Cup_All.png'),
           // tags: ['d3.forceSimulation()', 'd3.on("tick",()=>{})']
         },
         { 
@@ -158,7 +158,19 @@ export default {
           name:'Force Directed Graph 2',
           link: '/d3/Force_Directed_Graph_2',
           img: require('../../src/assets/thumbnail/Force_Directed_Graph_2.png'),
-          // tags: ['d3.event', 'd3.forceSimulation', 'Simulation.alpha()', 'Simulation.alphaTarget()', 'Simulation.tick()']
+          tags: ['d3.forceLink()', 'Link.links()', 'Link.id()']
+        },
+        {
+          name:'Add Remove',
+          link: '/d3/Force_Directed_Graph_3',
+          img: require('../../src/assets/thumbnail/add_remove.png'),
+          // tags: ['d3.forceLink()', 'Link.links()', 'Link.id()']
+        },
+        {
+          name:'Dots Links',
+          link: '/d3/Force_Directed_Graph_4',
+          img: require('../../src/assets/thumbnail/dots_links.png'),
+          // tags: ['d3.forceLink()', 'Link.links()', 'Link.id()']
         },
       ]
     }
