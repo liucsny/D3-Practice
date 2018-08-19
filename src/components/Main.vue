@@ -179,6 +179,12 @@ export default {
           img: require('../../src/assets/thumbnail/Force_Directed_Lattice.png'),
           tags: ['d3.drag().subject(function(){ ... })', 'simulation.find(function(){ ... })']
         },
+        {
+          name:'Gridplot',
+          link: '/d3/Gridplot',
+          img: require('../../src/assets/thumbnail/Gridplot.png'),
+          tags: ['selection.each()']
+        },
       ]
     }
   },
