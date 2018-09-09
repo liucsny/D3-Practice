@@ -69,10 +69,10 @@ module.exports = function (vm) {
         return d
       }).then(function (data) {
         // console.log(data)
-        console.log(d3.nest()
-        .key(function(d) {
-          return d.日期.split(' ')[0]
-        }).entries(data))
+        // console.log(d3.nest()
+        // .key(function(d) {
+        //   return d.日期.split(' ')[0]
+        // }).entries(data))
 
         data = d3.nest()
                 .key(function(d) {
@@ -99,6 +99,8 @@ module.exports = function (vm) {
                   }
                 }) //计数求和平均
                 .entries(data)
+
+        console.log(data)
 
                 // .rollup(function (d) {
                 //   let sum = 0

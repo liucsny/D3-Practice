@@ -185,6 +185,24 @@ export default {
           img: require('../../src/assets/thumbnail/Gridplot.png'),
           tags: ['selection.each()']
         },
+        // {
+        //   name:'Scroll Clock',
+        //   link: '/d3/Scroll_Clock',
+        //   img: require('../../src/assets/thumbnail/default.png'),
+        //   tags: ['selection.each()']
+        // },
+        {
+          name:'Academic Nova 1',
+          link: '/d3/Academic_Nova_1',
+          img: require('../../src/assets/thumbnail/default.png'),
+          // tags: ['selection.each()']
+        },
+        {
+          name:'Simulation Game',
+          link: '/d3/Sim_Game',
+          img: require('../../src/assets/thumbnail/default.png'),
+          // tags: ['selection.each()']
+        },
       ]
     }
   },
